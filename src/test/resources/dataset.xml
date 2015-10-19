@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <CUSTOMERS ID="1" FIRST_NAME="chuck" LAST_NAME="norris" ADDRESS="USA" PHONE="1234" EMAIL="chuck@norris.us"
+               PASSWORD="ranger"/>
+    <CUSTOMERS ID="2" FIRST_NAME="bruce" LAST_NAME="lee" ADDRESS="China" PHONE="2345" EMAIL="bruce@lee.ch"
+               PASSWORD="kee-ya"/>
+    <CUSTOMERS ID="3" FIRST_NAME="vasily" LAST_NAME="terkin" ADDRESS="Russia" PHONE="3456" EMAIL="vasily@terkin.ru"
+               PASSWORD="bear"/>
+
+    <PRODUCTS id="1" TITLE="product 1" PRICE="1.00" QUANTITY="5" DESCRIPTION="description product 1"/>
+    <PRODUCTS id="2" TITLE="product 2" PRICE="2.00" QUANTITY="5" DESCRIPTION="description product 2"/>
+    <PRODUCTS id="3" TITLE="product 3" PRICE="3.00" QUANTITY="5" DESCRIPTION="description product 3"/>
+
+    <SELLERS ID="1" FIRST_NAME="seller 1" LAST_NAME="seller 1" PHONE="1234" EMAIL="seller1@email.com" PASSWORD="seller1"/>
+    <SELLERS ID="2" FIRST_NAME="seller 2" LAST_NAME="seller 2" PHONE="2345" EMAIL="seller2@email.com" PASSWORD="seller2"/>
+
+    <ORDERS ID="1" CUSTOMER_ID="1" SELLER_ID="1" DATE_ORDER="2015-02-12" STATUS="sold1"/>
+    <ORDERS ID="2" CUSTOMER_ID="2" SELLER_ID="1" DATE_ORDER="2015-02-13" STATUS="sold2"/>
+    <ORDERS ID="3" CUSTOMER_ID="2" SELLER_ID="1" DATE_ORDER="2015-02-14" STATUS="sold3"/>
+
+    <PRODUCTS_SOLD ORDER_ID="1" TITLE="product 1" QUANTITY="1" PRICE="1.00"/>
+    <PRODUCTS_SOLD ORDER_ID="2" TITLE="product 1" QUANTITY="2" PRICE="1.00"/>
+
+
+    <COMMENTS ID="1" PRODUCT_ID="1" CUSTOMER_ID="1" CUSTOMER_NAME="chuck" CONTENT="content1Chuck"/>
+    <COMMENTS ID="2" PRODUCT_ID="2" CUSTOMER_ID="1" CUSTOMER_NAME="chuck" CONTENT="content2Chuck"/>
+    <COMMENTS ID="3" PRODUCT_ID="1" CUSTOMER_ID="2" CUSTOMER_NAME="bruce" CONTENT="contentBruce"/>
+
+</dataset>

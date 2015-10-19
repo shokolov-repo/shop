@@ -1,0 +1,193 @@
+package dao.impl;
+
+import dao.ConnectionDB;
+import dao.OrderDAO;
+import entity.Order;
+import org.apache.log4j.Logger;
+
+import java.sql.*;
+import java.util.LinkedList;
+import java.util.List;
+
+
+/**
+ * Created by dmity on 16.10.15.
+ */
+public class OrderDAOImpl implements OrderDAO {
+    Logger logger = Logger.getLogger(CustomerDAOImpl.class);
+    private String CREATE = "INSERT INTO ORDERS (CUSTOMER_ID , SELLER_ID , DATE_ORDER , STATUS )" +
+            "VALUES ( ? , ? , ? , ? )";
+    private String UPDATE = "UPDATE ORDERS SET STATUS = ? WHERE ID = ?";
+    private String DELETE = "DELETE FROM ORDERS WHERE ID = ?";
+    private String FIND_BY_ID = "SELECT * FROM ORDERS WHERE ID = ?";
+    private String FIND_BY_DATE = "SELECT * FROM ORDERS WHERE DATE_ORDER = ?";
+    private String FIND_BY_STATUS = "SELECT * FROM ORDERS WHERE STATUS = ?";
+    private String FIND_BY_CUSTOMER_ID = "SELECT * FROM ORDERS WHERE CUSTOMER_ID = ?";
+    Connection connection;
+
+    @Override
+    public void create(Order order) {
+        if (order == null) {
+            logger.error("Customer == null");
+            throw new NullPointerException();
+        }
+        connection = ConnectionDB.createConnection();
+        try {
+            PreparedStatement statement = connection.prepareStatement(CREATE);
+
+            statement.setLong(1, order.getCustomerId());
+            statement.setLong(2, order.getSellerId());
+            statement.setDate(3, order.getDateOrder());
+            statement.setString(4, order.getStatus());
+            int i = statement.executeUpdate();
+
+            if (i == 0) {
+                logger.trace(order + "wasn't create");
+            }
+
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+        } finally {
+            ConnectionDB.closeConnection(connection);
+        }
+    }
+
+    @Override
+    public void update(Order order) {
+        connection = ConnectionDB.createConnection();
+        try {
+            PreparedStatement statement = connection.prepareStatement(UPDATE);
+
+            statement.setString(1, order.getStatus());
+            statement.setLong(2, order.getId());
+            int i = statement.executeUpdate();
+
+            if (i == 0) {
+                logger.trace(order + "wasn't update");
+            }
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+        } finally {
+            ConnectionDB.closeConnection(connection);
+        }
+    }
+
+    @Override
+    public void delete(long id) {
+        connection = ConnectionDB.createConnection();
+        try {
+            PreparedStatement statement = connection.prepareStatement(DELETE);
+
+            statement.setLong(1, id);
+            int i = statement.executeUpdate();
+
+            if (i == 0) {
+                logger.trace("order + wasn't delete");
+            }
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+        }
+    }
+
+    @Override
+    public Order findById(long id) {
+        Order order = null;
+        ResultSet resultSet;
+        connection = ConnectionDB.createConnection();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(FIND_BY_ID);
+
+            statement.setLong(1, id);
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                order = getOrder(resultSet);
+            }
+
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+        }
+        return order;
+    }
+
+    @Override
+    public Order findByDate(Date date) {
+        Order order = null;
+        ResultSet resultSet;
+        connection = ConnectionDB.createConnection();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(FIND_BY_DATE);
+
+            statement.setDate(1, date);
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                order = getOrder(resultSet);
+            }
+
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+        }
+        return order;
+    }
+
+    @Override
+    public List<Order> findAllByCustomerId(long customerId) {
+        List<Order> orders = null;
+        ResultSet resultSet;
+        connection = ConnectionDB.createConnection();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(FIND_BY_CUSTOMER_ID);
+
+            statement.setLong(1, customerId);
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                orders.add(getOrder(resultSet));
+            }
+
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+        }
+        return orders;
+    }
+
+    @Override
+    public List<Order> findAllByStatus(String status) {
+        List<Order> orders = new LinkedList<>();
+        ResultSet resultSet;
+        connection = ConnectionDB.createConnection();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(FIND_BY_STATUS);
+
+            statement.setString(1, status);
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                orders.add(getOrder(resultSet));
+            }
+
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+        }
+        return orders;
+    }
+
+    private Order getOrder(ResultSet resultSet) {
+        Order order = new Order();
+        try {
+            order.setId(resultSet.getLong("ID"));
+            order.setCustomerId(resultSet.getLong("CUSTOMER_ID"));
+            order.setSellerId(resultSet.getLong("SELLER_ID"));
+            order.setDateOrder(resultSet.getDate("DATE_ORDER"));
+            order.setStatus(resultSet.getString("STATUS"));
+        } catch (SQLException e) {
+            logger.info("Customer not create." + e.getMessage());
+        }
+        return order;
+    }
+}
