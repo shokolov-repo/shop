@@ -3,13 +3,15 @@ package entity;
 /**
  * Created by dmity on 13.10.15.
  */
-public class Seller {
+public class User {
     private long id;
     private String firstName;
     private String lastName;
-    private String email;
+    private String address;
     private String phone;
+    private String email;
     private String password;
+    private String role;
 
     public long getId() {
         return id;
@@ -35,12 +37,12 @@ public class Seller {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getAddress() {
+        return address;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getPhone() {
@@ -51,6 +53,14 @@ public class Seller {
         this.phone = phone;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -59,14 +69,23 @@ public class Seller {
         this.password = password;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
-        return "Seller{" +
+        return "User{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

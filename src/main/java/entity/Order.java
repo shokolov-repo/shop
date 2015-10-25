@@ -8,8 +8,7 @@ import java.sql.Date;
  */
 public class Order {
     private long id;
-    private long customerId;
-    private long sellerId;
+    private long userId;
     private Date dateOrder;
     private String status;
 
@@ -21,20 +20,12 @@ public class Order {
         this.id = id;
     }
 
-    public long getCustomerId() {
-        return customerId;
+    public long getUserId() {
+        return userId;
     }
 
-    public void setCustomerId(long customerId) {
-        this.customerId = customerId;
-    }
-
-    public long getSellerId() {
-        return sellerId;
-    }
-
-    public void setSellerId(long sellerId) {
-        this.sellerId = sellerId;
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
     public Date getDateOrder() {
@@ -57,8 +48,7 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", customerId=" + customerId +
-                ", sellerId=" + sellerId +
+                ", userId=" + userId +
                 ", dateOrder=" + dateOrder +
                 ", status='" + status + '\'' +
                 '}';

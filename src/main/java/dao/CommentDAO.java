@@ -16,5 +16,5 @@ public interface CommentDAO {
 
     List<Comment> findByProductId(long productId);
 
-    List<Comment> findByCustomerId(long customerId);
+    List<Comment> findByUserId(long userId);
 }

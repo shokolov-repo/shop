@@ -20,7 +20,9 @@ public interface OrderDAO {
 
     Order findByDate(Date date);
 
-    List<Order> findAllByCustomerId(long customerId);
+    List<Order> findAllByUserId(long userId);
 
     List<Order> findAllByStatus(String status);
+
+    List<Order> findAll();
 }

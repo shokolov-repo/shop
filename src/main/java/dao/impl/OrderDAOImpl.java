@@ -14,31 +14,31 @@ import java.util.List;
  * Created by dmity on 16.10.15.
  */
 public class OrderDAOImpl implements OrderDAO {
-    Logger logger = Logger.getLogger(CustomerDAOImpl.class);
-    private String CREATE = "INSERT INTO ORDERS (CUSTOMER_ID , SELLER_ID , DATE_ORDER , STATUS )" +
-            "VALUES ( ? , ? , ? , ? )";
+    Logger logger = Logger.getLogger(UserDAOImpl.class);
+    private String CREATE = "INSERT INTO ORDERS (USER_ID , DATE_ORDER , STATUS )" +
+            "VALUES ( ? , ? , ? )";
     private String UPDATE = "UPDATE ORDERS SET STATUS = ? WHERE ID = ?";
     private String DELETE = "DELETE FROM ORDERS WHERE ID = ?";
     private String FIND_BY_ID = "SELECT * FROM ORDERS WHERE ID = ?";
     private String FIND_BY_DATE = "SELECT * FROM ORDERS WHERE DATE_ORDER = ?";
-    private String FIND_BY_STATUS = "SELECT * FROM ORDERS WHERE STATUS = ?";
-    private String FIND_BY_CUSTOMER_ID = "SELECT * FROM ORDERS WHERE CUSTOMER_ID = ?";
+    private String FIND_ALL_BY_STATUS = "SELECT * FROM ORDERS WHERE STATUS = ?";
+    private String FIND_ALL_BY_USER_ID = "SELECT * FROM ORDERS WHERE USER_ID = ?";
+    private String FIND_ALL = "SELECT * FROM ORDERS";
     Connection connection;
 
     @Override
     public void create(Order order) {
         if (order == null) {
-            logger.error("Customer == null");
+            logger.error("Order == null");
             throw new NullPointerException();
         }
         connection = ConnectionDB.createConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(CREATE);
 
-            statement.setLong(1, order.getCustomerId());
-            statement.setLong(2, order.getSellerId());
-            statement.setDate(3, order.getDateOrder());
-            statement.setString(4, order.getStatus());
+            statement.setLong(1, order.getUserId());
+            statement.setDate(2, order.getDateOrder());
+            statement.setString(3, order.getStatus());
             int i = statement.executeUpdate();
 
             if (i == 0) {
@@ -134,15 +134,15 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public List<Order> findAllByCustomerId(long customerId) {
+    public List<Order> findAllByUserId(long userId) {
         List<Order> orders = null;
         ResultSet resultSet;
         connection = ConnectionDB.createConnection();
 
         try {
-            PreparedStatement statement = connection.prepareStatement(FIND_BY_CUSTOMER_ID);
+            PreparedStatement statement = connection.prepareStatement(FIND_ALL_BY_USER_ID);
 
-            statement.setLong(1, customerId);
+            statement.setLong(1, userId);
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -162,7 +162,7 @@ public class OrderDAOImpl implements OrderDAO {
         connection = ConnectionDB.createConnection();
 
         try {
-            PreparedStatement statement = connection.prepareStatement(FIND_BY_STATUS);
+            PreparedStatement statement = connection.prepareStatement(FIND_ALL_BY_STATUS);
 
             statement.setString(1, status);
             resultSet = statement.executeQuery();
@@ -177,16 +177,34 @@ public class OrderDAOImpl implements OrderDAO {
         return orders;
     }
 
+    @Override
+    public List<Order> findAll() {
+        List<Order> orders = new LinkedList<>();
+        ResultSet resultSet;
+        connection = ConnectionDB.createConnection();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(FIND_ALL);
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                orders.add(getOrder(resultSet));
+            }
+
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+        }
+        return orders;    }
+
     private Order getOrder(ResultSet resultSet) {
         Order order = new Order();
         try {
             order.setId(resultSet.getLong("ID"));
-            order.setCustomerId(resultSet.getLong("CUSTOMER_ID"));
-            order.setSellerId(resultSet.getLong("SELLER_ID"));
+            order.setUserId(resultSet.getLong("USER_ID"));
             order.setDateOrder(resultSet.getDate("DATE_ORDER"));
             order.setStatus(resultSet.getString("STATUS"));
         } catch (SQLException e) {
-            logger.info("Customer not create." + e.getMessage());
+            logger.info("Order not create." + e.getMessage());
         }
         return order;
     }

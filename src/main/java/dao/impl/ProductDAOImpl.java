@@ -16,7 +16,7 @@ import java.util.List;
  * Created by dmity on 16.10.15.
  */
 public class ProductDAOImpl implements ProductDAO {
-    Logger logger = Logger.getLogger(CustomerDAOImpl.class);
+    Logger logger = Logger.getLogger(UserDAOImpl.class);
     private String CREATE = "INSERT INTO PRODUCTS (TITLE , PRICE , QUANTITY , DESCRIPTION )" +
             " VALUES ( ? , ? , ? , ? )";
     private String UPDATE = "UPDATE PRODUCTS SET TITLE = ? , PRICE = ? , QUANTITY = ? , DESCRIPTION = ? WHERE ID = ?";
@@ -184,7 +184,7 @@ public class ProductDAOImpl implements ProductDAO {
             product.setQuantity(resultSet.getInt("QUANTITY"));
             product.setDescription(resultSet.getString("DESCRIPTION"));
         } catch (SQLException e) {
-            logger.info("Customer not create.");
+            logger.info("Product not create.");
         }
         return product;
     }

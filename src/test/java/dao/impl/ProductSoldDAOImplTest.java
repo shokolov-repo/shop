@@ -34,13 +34,11 @@ public class ProductSoldDAOImplTest extends BeforeTestShop {
     @Test
     public void testUpdate() throws Exception {
 //        given
-        ProductSold testProductSold = new ProductSold();//productSoldDAO.findAll(1);
-        testProductSold.setOrderId(1);
-        testProductSold.setPrice(1.00);
-        testProductSold.setQuantity(5);
-        testProductSold.setTitle("product 1");
+        List<ProductSold> testProductsSold = productSoldDAO.findAll(1);
+        testProductsSold.get(0).setQuantity(5);
+
 //        when
-        productSoldDAO.update(testProductSold);
+        productSoldDAO.update(testProductsSold.get(0));
         List<ProductSold> productsSold = productSoldDAO.findAll(1);
 
 //        then

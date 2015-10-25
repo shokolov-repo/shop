@@ -36,11 +36,7 @@ public class ProductDAOImplTest extends BeforeTestShop {
     @Test
     public void testUpdate() throws Exception {
 //        given
-        Product testProduct = new Product();// productDAO.findById(1);
-        testProduct.setId(1);
-        testProduct.setTitle("product 1");
-        testProduct.setQuantity(5);
-        testProduct.setPrice(3.00);
+        Product testProduct = productDAO.findById(1);
         testProduct.setDescription("update description");
 
 //        when
@@ -50,7 +46,7 @@ public class ProductDAOImplTest extends BeforeTestShop {
 //        then
         assertEquals("product 1", product.getTitle());
         assertEquals(5, product.getQuantity());
-        assertEquals(3.00, product.getPrice());
+        assertEquals(1.00, product.getPrice());
         assertEquals("update description", product.getDescription());
     }
 

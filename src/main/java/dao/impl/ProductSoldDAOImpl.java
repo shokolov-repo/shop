@@ -17,7 +17,7 @@ import java.util.List;
  * Created by dmity on 16.10.15.
  */
 public class ProductSoldDAOImpl implements ProductSoldDAO {
-    Logger logger = Logger.getLogger(CustomerDAOImpl.class);
+    Logger logger = Logger.getLogger(UserDAOImpl.class);
     private String CREATE = "INSERT INTO PRODUCTS_SOLD (ORDER_ID , TITLE , QUANTITY , PRICE )" +
             "VALUES ( ? , ? , ? , ? )";
     private String UPDATE = "UPDATE PRODUCTS_SOLD SET TITLE = ? , QUANTITY = ? , PRICE = ? WHERE ORDER_ID = ?";
@@ -29,7 +29,7 @@ public class ProductSoldDAOImpl implements ProductSoldDAO {
     @Override
     public void create(ProductSold productSold) {
         if (productSold == null) {
-            logger.error("Customer == null");
+            logger.error("ProductSold == null");
             throw new NullPointerException();
         }
         connection = ConnectionDB.createConnection();

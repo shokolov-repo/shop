@@ -17,8 +17,8 @@ public class CommentDAOImplTest extends BeforeTestShop {
 //      given
         Comment testComment = new Comment();
         testComment.setProductId(3);
-        testComment.setCustomerId(3);
-        testComment.setCustomerName("vasily");
+        testComment.setUserId(3);
+        testComment.setUserName("vasily");
         testComment.setContent("Some content test");
 
 //      when
@@ -28,8 +28,8 @@ public class CommentDAOImplTest extends BeforeTestShop {
 //      then
         assertEquals(1, comments.size());
         assertEquals(3, comments.get(0).getProductId());
-        assertEquals(3, comments.get(0).getCustomerId());
-        assertEquals("vasily", comments.get(0).getCustomerName());
+        assertEquals(3, comments.get(0).getUserId());
+        assertEquals("vasily", comments.get(0).getUserName());
         assertEquals("Some content test", comments.get(0).getContent());
     }
 
@@ -61,12 +61,12 @@ public class CommentDAOImplTest extends BeforeTestShop {
     @Test
     public void testFindByCustomerId() throws Exception {
 //        when
-        List<Comment> comments = commentDAO.findByCustomerId(2);
+        List<Comment> comments = commentDAO.findByUserId(2);
 
 //        then
         assertEquals(1, comments.size());
         assertEquals(3, comments.get(0).getId());
-        assertEquals("bruce", comments.get(0).getCustomerName());
+        assertEquals("bruce", comments.get(0).getUserName());
         assertEquals("contentBruce", comments.get(0).getContent());
     }
 
@@ -77,9 +77,9 @@ public class CommentDAOImplTest extends BeforeTestShop {
 
 //        then
         assertEquals(2, comments.size());
-        assertEquals("chuck", comments.get(0).getCustomerName());
+        assertEquals("chuck", comments.get(0).getUserName());
         assertEquals("content1Chuck", comments.get(0).getContent());
-        assertEquals("bruce", comments.get(1).getCustomerName());
+        assertEquals("bruce", comments.get(1).getUserName());
         assertEquals("contentBruce", comments.get(1).getContent());
     }
 }

@@ -18,8 +18,7 @@ public class OrderDAOImplTest extends BeforeTestShop {
 //        given
         Order testOrder = new Order();
         testOrder.setId(4);
-        testOrder.setCustomerId(1);
-        testOrder.setSellerId(1);
+        testOrder.setUserId(1);
         testOrder.setDateOrder(Date.valueOf("2010-03-05"));
         testOrder.setStatus("check");
 
@@ -28,8 +27,7 @@ public class OrderDAOImplTest extends BeforeTestShop {
         Order order = orderDAO.findById(4);
 
 //        then
-        assertEquals(1, order.getCustomerId());
-        assertEquals(1, order.getSellerId());
+        assertEquals(1, order.getUserId());
         assertEquals(Date.valueOf("2010-03-05"), order.getDateOrder());
         assertEquals("check", order.getStatus());
     }
@@ -64,9 +62,9 @@ public class OrderDAOImplTest extends BeforeTestShop {
         Order order = orderDAO.findById(1);
 
 //        then
-        assertEquals("sold1", order.getStatus(), "sold1");
+        assertEquals("sold", order.getStatus(), "sold");
         assertEquals(Date.valueOf("2015-02-12"), order.getDateOrder());
-        assertEquals(1, order.getCustomerId());
+        assertEquals(1, order.getUserId());
     }
 
     @Test
@@ -75,18 +73,28 @@ public class OrderDAOImplTest extends BeforeTestShop {
         Order order = orderDAO.findByDate(Date.valueOf("2015-02-12"));
 
 //        then
-        assertEquals("sold1", order.getStatus());
+        assertEquals("sold", order.getStatus());
         assertEquals(1, order.getId());
-        assertEquals(1, order.getCustomerId());
+        assertEquals(1, order.getUserId());
     }
 
     @Test
     public void testFindByStatus() throws Exception {
 //        when
-        List<Order> orders = orderDAO.findAllByStatus("sold1");
+        List<Order> orders = orderDAO.findAllByStatus("sold");
 
 //        then
         assertEquals(1, orders.get(0).getId());
-        assertEquals(1, orders.size());
+        assertEquals(2, orders.size());
     }
+    @Test
+    public void testFindAll() throws Exception {
+//        when
+        List<Order> orders = orderDAO.findAll();
+
+//        then
+        assertEquals(1, orders.get(0).getId());
+        assertEquals(3, orders.size());
+    }
+
 }

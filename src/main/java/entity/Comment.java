@@ -6,7 +6,8 @@ package entity;
 public class Comment {
     private long id;
     private long productId;
-    private String customerName;
+    private long userId;
+    private String userName;
     private String content;
 
     public long getId() {
@@ -17,8 +18,6 @@ public class Comment {
         this.id = id;
     }
 
-    private long customerId;
-
     public long getProductId() {
         return productId;
     }
@@ -27,20 +26,20 @@ public class Comment {
         this.productId = productId;
     }
 
-    public long getCustomerId() {
-        return customerId;
+    public long getUserId() {
+        return userId;
     }
 
-    public void setCustomerId(long customerId) {
-        this.customerId = customerId;
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getContent() {
@@ -55,8 +54,8 @@ public class Comment {
     public String toString() {
         return "Comment{" +
                 ", productId=" + productId +
-                ", customerId=" + customerId +
-                ", customerName='" + customerName + '\'' +
+                ", userId=" + userId +
+                ", userName='" + userName + '\'' +
                 ", content='" + content + '\'' +
                 '}';
     }
