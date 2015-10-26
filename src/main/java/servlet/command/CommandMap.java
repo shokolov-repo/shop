@@ -9,14 +9,25 @@ import java.util.Map;
 public class CommandMap {
     private static Map<String, Command> commandMap = new HashMap<>();
 
-    static  {
+    static {
+        commandMap.put("indexPage", new IndexPage());
         commandMap.put("login", new Login());
         commandMap.put("logout", new Logout());
         commandMap.put("registration", new Registration());
         commandMap.put("buy", new Buy());
-        commandMap.put("updateAccount",new UpdAcc());
-        commandMap.put("findAll",new FindAllOrders());
-        commandMap.put("showSellerPage",new SellerPageCommand());
+        commandMap.put("updateAccount", new UpdateAccount());
+        commandMap.put("findAll", new FindAllOrders());
+        commandMap.put("showSellerPage", new SellerPage());
+        commandMap.put("customerPage", new CustomerPage());
+        commandMap.put("sellerPage", new SellerPage());
+        commandMap.put("adminPage", new AdminPage());
+        commandMap.put("addProductToBasket", new AddProductToBasket());
+
+        commandMap.put("replaceRole", new ReplaceRole());
+        commandMap.put("addUser", new AdminPage());
+        commandMap.put("deleteUser", new DeleteUser());
+        commandMap.put("updateUserComment", new UpdateUserComments());
+
     }
 
     public static Command getCommand(String name) {

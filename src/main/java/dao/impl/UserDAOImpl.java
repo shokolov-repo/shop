@@ -45,7 +45,7 @@ public class UserDAOImpl implements UserDAO {
             statement.setString(4, user.getPhone());
             statement.setString(5, user.getEmail());
             statement.setString(6, user.getPassword());
-            statement.setString(7, user.getRole());
+            statement.setString(7, "Customer");
             int i = statement.executeUpdate();
 
             if (i == 0) {

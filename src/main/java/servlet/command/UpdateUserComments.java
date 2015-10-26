@@ -6,9 +6,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by dmity on 24.10.15.
+ * Created by dmity on 25.10.15.
  */
-public class SellerPageCommand implements Command {
+public class UpdateUserComments implements Command {
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

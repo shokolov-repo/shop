@@ -49,12 +49,7 @@
 <%--<div class="block2">Ut wisis enim ad minim veniam, quis nostrud--%>
   <%--exerci tution ullamcorper suscipit lobortis nisl ut aliquip ex--%>
   <%--ea commodo consequat.</div>--%>
-<div id="left"><div class="content">Выравнивание по левому краюyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
-8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
-iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
-uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
-jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
-llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll</div></div>
+<div id="left"><div class="content">Выравнивание по левому краю</div></div>
 <div id="center"><div class="content">Выравнивание по центру</div></div>
 <div id="right"><div class="content">Выравнивание по правому краю</div></div>
 </body>

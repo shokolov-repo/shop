@@ -135,7 +135,7 @@ public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public List<Order> findAllByUserId(long userId) {
-        List<Order> orders = null;
+        List<Order> orders = new LinkedList<>();
         ResultSet resultSet;
         connection = ConnectionDB.createConnection();
 

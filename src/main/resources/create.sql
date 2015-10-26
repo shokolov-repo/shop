@@ -45,9 +45,9 @@ CREATE TABLE COMMENTS (
 INSERT INTO USERS (FIRST_NAME, LAST_NAME, ADDRESS, PHONE, EMAIL, PASSWORD, ROLE)
 VALUES ("chuck", "norris", "USA", "1234", "chuck@norris.us", "ranger", "admin");
 INSERT INTO USERS (FIRST_NAME, LAST_NAME, ADDRESS, PHONE, EMAIL, PASSWORD, ROLE)
-VALUES ("bruce", "lee", "China", "2345", "bruce@lee", "kee-ya", "seller");
+VALUES ("bruce", "lee", "China", "2345", "bruce@lee.ch", "kee-ya", "customer");
 INSERT INTO USERS (FIRST_NAME, LAST_NAME, ADDRESS, PHONE, EMAIL, PASSWORD, ROLE)
-VALUES ("vasily", "terkin", "Russia", "3456", "vasily@terkin.ru", "bear", "user");
+VALUES ("vasily", "terkin", "Russia", "3456", "vasily@terkin.ru", "bear", "seller");
 INSERT INTO PRODUCTS (TITLE, PRICE, QUANTITY, DESCRIPTION)
 VALUES ("product1", "1.00", "5", "description product 1");
 INSERT INTO PRODUCTS (TITLE, PRICE, QUANTITY, DESCRIPTION)

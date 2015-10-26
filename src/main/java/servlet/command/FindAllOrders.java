@@ -19,9 +19,9 @@ public class FindAllOrders implements Command {
 //
 //        if (orders.size() > 0) {
 //            req.setAttribute("orders", orders);
-//            req.getRequestDispatcher("/seller.jsp").forward(req, resp);
+//            req.getRequestDispatcher("/sellerPage.jsp").forward(req, resp);
 //        } else {
-//            req.getRequestDispatcher("/seller.jsp").forward(req, resp);
+//            req.getRequestDispatcher("/sellerPage.jsp").forward(req, resp);
 //        }
     }
 }
