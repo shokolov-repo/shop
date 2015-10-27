@@ -1,8 +1,8 @@
 package servlet.command;
 
-import dao.ProductDAO;
-import dao.impl.ProductDAOImpl;
-import entity.Product;
+import dao.ProductSoldDAO;
+import dao.impl.ProductSoldDAOImpl;
+import entity.ProductSold;
 import servlet.Command;
 
 import javax.servlet.ServletException;
@@ -12,15 +12,16 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by dmity on 26.10.15.
+ * Created by dmity on 27.10.15.
  */
-public class IndexPage implements Command {
-    ProductDAO productDAO = new ProductDAOImpl();
-    List<Product> products = productDAO.findAll();
+public class OrderPage implements Command {
+    ProductSoldDAO productSoldDAO = new ProductSoldDAOImpl();
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String id = req.getParameter("id");
+        List<ProductSold> products = productSoldDAO.findAll(Long.valueOf(id));
         req.setAttribute("products", products);
-        req.getRequestDispatcher("/index.jsp").forward(req, resp);
+        req.getRequestDispatcher("/orderPage.jsp").forward(req, resp);
     }
 }

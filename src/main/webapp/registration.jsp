@@ -35,26 +35,27 @@
             </tr>
             <tr>
                 <td>Phone</td>
-                <td><input type="text" name="phone" value=""/></td>
+                <td><input type="tel" name="phone" value=""/></td>
             </tr>
             <tr>
                 <td>Email</td>
-                <td><input type="text" name="email" value=""/></td>
+                <td><input type="email" name="email" value=""/></td>
             </tr>
 
             <tr>
                 <td>Password</td>
-                <td><input type="password" name="password" value=""/></td>
-            </tr> <tr>
+                <td><input type="password" name="password1" value=""/></td>
+            </tr>
+            <tr>
                 <td>Confirm Password</td>
-                <td><input type="password" name="password" value=""/></td>
+                <td><input type="password" name="password2" value=""/></td>
             </tr>
             <tr>
                 <td><input type="submit" value="Submit"/></td>
                 <td><input type="reset" value="Reset"/></td>
             </tr>
             <tr>
-                <td colspan="2"><a href="login.jsp">Login Here</a></td>
+                <td colspan="2"><a href="dispatcher?command=indexPage">Login Here</a></td>
             </tr>
             </tbody>
         </table>

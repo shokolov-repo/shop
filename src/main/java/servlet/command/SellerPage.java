@@ -3,6 +3,7 @@ package servlet.command;
 import dao.OrderDAO;
 import dao.impl.OrderDAOImpl;
 import entity.Order;
+import servlet.Command;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

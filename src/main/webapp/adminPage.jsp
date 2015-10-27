@@ -20,9 +20,6 @@
 <body>
 <div>
     <p style="text-align: right;">
-        <%
-            out.print(session.getAttribute("name"));
-        %>
         <a href="dispatcher?command=logout">
             <input type="submit" value="logout"/>
         </a>

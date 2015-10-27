@@ -1,6 +1,7 @@
 package servlet.command;
 
 import org.apache.log4j.Logger;
+import servlet.Command;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +17,8 @@ public class Logout implements Command {
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getSession().removeAttribute("user");
-        CommandMap.getCommand("indexPage").execute(req, resp);
+        req.getSession().removeAttribute("cart");
+        req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 }
 

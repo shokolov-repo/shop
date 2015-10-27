@@ -1,7 +1,6 @@
 package servlet;
 
 import org.apache.log4j.Logger;
-import servlet.command.CommandMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +32,8 @@ public class Servlet extends HttpServlet {
             CommandMap.getCommand(command).execute(req, resp);
         } else {
             req.setAttribute("error", "wrong email or password");
-            CommandMap.getCommand("indexPage").execute(req, resp);        }
+            CommandMap.getCommand("indexPage").execute(req, resp);
+        }
     }
 }
 

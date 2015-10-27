@@ -1,7 +1,7 @@
 package servlet.command;
 
-import dao.UserDAO;
-import dao.impl.UserDAOImpl;
+import dao.ProductDAO;
+import dao.impl.ProductDAOImpl;
 import servlet.Command;
 
 import javax.servlet.ServletException;
@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by dmity on 25.10.15.
+ * Created by dmity on 27.10.15.
  */
-public class ReplaceRole implements Command {
+public class Cart implements Command {
+    ProductDAO productDAO = new ProductDAOImpl();
+
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        long id = (long) req.getAttribute("order.id");
-        UserDAO userDAO = new UserDAOImpl();
-        userDAO.findById(id);
+        req.getRequestDispatcher("/cart.jsp").forward(req, resp);
     }
 }

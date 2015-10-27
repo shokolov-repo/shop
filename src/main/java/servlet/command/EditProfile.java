@@ -3,6 +3,7 @@ package servlet.command;
 import dao.UserDAO;
 import dao.impl.UserDAOImpl;
 import entity.User;
+import servlet.Command;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +13,7 @@ import java.io.IOException;
 /**
  * Created by dmity on 22.10.15.
  */
-public class UpdateAccount implements Command {
+public class EditProfile implements Command {
     UserDAO userDAO = new UserDAOImpl();
 
     @Override
@@ -30,21 +31,21 @@ public class UpdateAccount implements Command {
             user.setFirstName(firstName);
         }
         if (lastName != null) {
-            user.setFirstName(lastName);
+            user.setLastName(lastName);
         }
         if (address != null) {
-            user.setFirstName(address);
+            user.setAddress(address);
         }
         if (phone != null) {
-            user.setFirstName(phone);
+            user.setPhone(phone);
         }
         if (email != null) {
-            user.setFirstName(email);
+            user.setEmail(email);
         }
         if (password != null) {
-            user.setFirstName(password);
+            user.setPassword(password);
         }
         userDAO.update(user);
-        req.getRequestDispatcher("/customerPage.jsp").forward(req, resp);
+        req.getRequestDispatcher("/editProfile").forward(req, resp);
     }
 }

@@ -3,6 +3,8 @@ package servlet.command;
 import dao.OrderDAO;
 import dao.impl.OrderDAOImpl;
 import entity.Order;
+import entity.User;
+import servlet.Command;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,9 +20,9 @@ public class CustomerPage implements Command {
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String id = req.getParameter("id");
-        List<Order> orders = orderDAO.findAllByUserId(Long.valueOf(id));
-        req.getSession().setAttribute("orders", orders);
+        User user = (User) req.getSession().getAttribute("user");
+        List<Order> orders = orderDAO.findAllByUserId(user.getId());
+        req.setAttribute("orders", orders);
         req.getRequestDispatcher("/customerPage.jsp").forward(req, resp);
     }
 }

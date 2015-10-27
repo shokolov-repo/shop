@@ -15,7 +15,7 @@
         <a href="dispatcher?command=logout">
             <input type="submit" value="logout"/>
         </a>
-        <a href="updateAccount.jsp">
+        <a href="editProfile.jsp">
             <button type="submit" value="update account">update account</button>
         </a>
     </p>

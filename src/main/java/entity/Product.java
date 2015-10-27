@@ -60,4 +60,13 @@ public class Product {
                 ", description='" + description + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Product product = (Product) obj;
+        if (this.id == product.getId()) {
+            return true;
+        }
+        return false;
+    }
 }

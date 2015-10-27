@@ -3,6 +3,7 @@ package servlet.command;
 import dao.UserDAO;
 import dao.impl.UserDAOImpl;
 import entity.User;
+import servlet.Command;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

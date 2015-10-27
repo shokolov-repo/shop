@@ -10,12 +10,11 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Update Account</title>
+    <title>edit profile</title>
 </head>
 <body>
-<form method="post" action="dispatcher?command=updateAccount">
-    <center>
-        <table border="1" width="30%" cellpadding="5">
+<form method="post" action="dispatcher?command=customerPage">
+           <table border="1" width="30%" cellpadding="5">
             <thead>
             <tr>
                 <th colspan="2">Enter new data here</th>
@@ -48,7 +47,7 @@
                 <td><input type="password" name="password" value=""/></td>
             </tr>
             <tr>
-                <td><input type="submit" value="Update"/></td>
+                <td><input type="submit" value="edit"/></td>
                 <td><input type="reset" value="Reset"/></td>
             </tr>
             <tr>
@@ -56,7 +55,6 @@
             </tr>
             </tbody>
         </table>
-    </center>
 </form>
 </body>
 </html>

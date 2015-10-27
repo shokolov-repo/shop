@@ -1,4 +1,4 @@
-package servlet.command;
+package servlet;
 
 import dao.*;
 import dao.impl.*;

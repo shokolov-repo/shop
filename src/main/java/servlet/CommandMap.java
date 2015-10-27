@@ -1,4 +1,6 @@
-package servlet.command;
+package servlet;
+
+import servlet.command.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,19 +16,22 @@ public class CommandMap {
         commandMap.put("login", new Login());
         commandMap.put("logout", new Logout());
         commandMap.put("registration", new Registration());
-        commandMap.put("buy", new Buy());
-        commandMap.put("updateAccount", new UpdateAccount());
-        commandMap.put("findAll", new FindAllOrders());
-        commandMap.put("showSellerPage", new SellerPage());
+        commandMap.put("editProfile", new EditProfile());
         commandMap.put("customerPage", new CustomerPage());
+        commandMap.put("findAll", new FindAllOrders());
         commandMap.put("sellerPage", new SellerPage());
         commandMap.put("adminPage", new AdminPage());
-        commandMap.put("addProductToBasket", new AddProductToBasket());
+        commandMap.put("addProductToCart", new AddProductToCart());
+        commandMap.put("cart", new Cart());
+        commandMap.put("delFromCart",new DelFromCart());
+        commandMap.put("orderPage",new OrderPage());
 
         commandMap.put("replaceRole", new ReplaceRole());
         commandMap.put("addUser", new AdminPage());
         commandMap.put("deleteUser", new DeleteUser());
         commandMap.put("updateUserComment", new UpdateUserComments());
+        commandMap.put("buy", new Buy());
+
 
     }
 
