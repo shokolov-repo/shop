@@ -12,7 +12,7 @@ public interface CommentDAO {
 
     void update(Comment comment);
 
-    void delete(long id);
+    void delete(long UserId);
 
     List<Comment> findByProductId(long productId);
 

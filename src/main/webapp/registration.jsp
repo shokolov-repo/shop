@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: dmity
-  Date: 20.10.15
-  Time: 17:48
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -21,8 +15,15 @@
             </tr>
             </thead>
             <tbody>
+            <c:if test="${error!=null}">
+                <tr>
+                    <th colspan="2">
+                        <div style="color: #BA0000;"><c:out value="${error}"/></div>
+                    </th>
+                </tr>
+            </c:if>
             <tr>
-                <td>First Name</td>
+                <td style="display: table-cell;">First Name</td>
                 <td><input type="text" name="firstName" value=""/></td>
             </tr>
             <tr>
@@ -38,21 +39,26 @@
                 <td><input type="tel" name="phone" value=""/></td>
             </tr>
             <tr>
-                <td>Email</td>
-                <td><input type="email" name="email" value=""/></td>
-            </tr>
-
-            <tr>
-                <td>Password</td>
-                <td><input type="password" name="password1" value=""/></td>
+                <td><label>E-mail<span
+                        style="color: #BA0000; font-family: Verdana; font-size: 16px; font-weight: bold;"> *</span></label>
+                </td>
+                <td><input type="email" name="email" value="" required/></td>
             </tr>
             <tr>
-                <td>Confirm Password</td>
-                <td><input type="password" name="password2" value=""/></td>
+                <td><label>Password<span
+                        style="color: #BA0000; font-family: Verdana; font-size: 16px; font-weight: bold;"> *</span></label>
+                </td>
+                <td><input type="password" name="password" value="" required/></td>
             </tr>
             <tr>
-                <td><input type="submit" value="Submit"/></td>
-                <td><input type="reset" value="Reset"/></td>
+                <td><label>Confirm password<span
+                        style="color: #BA0000; font-family: Verdana; font-size: 16px; font-weight: bold;"> *</span></label>
+                </td>
+                <td><input type="password" name="password" value="" required/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></td>
             </tr>
             <tr>
                 <td colspan="2"><a href="dispatcher?command=indexPage">Login Here</a></td>
@@ -61,5 +67,6 @@
         </table>
     </center>
 </form>
+
 </body>
 </html>

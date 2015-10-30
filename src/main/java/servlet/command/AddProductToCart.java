@@ -26,11 +26,11 @@ public class AddProductToCart implements Command {
         Product product = productDAO.findById(Long.valueOf(id));
         if (!cart.contains(product)) {
             cart.add(product);
-            req.getSession().setAttribute("cart", cart);
+        } else {
+            req.setAttribute("error","cart contains this product");
         }
+        req.getSession().setAttribute("cart", cart);
         CommandMap.getCommand("indexPage").execute(req, resp);
-
-//        req.getRequestDispatcher("/index.jsp").forward(req, resp);
 
 
     }

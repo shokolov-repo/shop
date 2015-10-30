@@ -16,10 +16,11 @@ import java.util.List;
  */
 public class IndexPage implements Command {
     ProductDAO productDAO = new ProductDAOImpl();
-    List<Product> products = productDAO.findAll();
+
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Product> products = productDAO.findAll();
         req.setAttribute("products", products);
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }

@@ -6,6 +6,7 @@ import entity.Product;
 import entity.User;
 import org.apache.log4j.Logger;
 import servlet.Command;
+import servlet.CommandMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -46,7 +47,8 @@ public class Login implements Command {
                     break;
             }
         } else {
-            req.getRequestDispatcher("/index.jsp").forward(req, resp);
+            req.setAttribute("error", "wrong email or password");
+            CommandMap.getCommand("indexPage").execute(req, resp);
         }
     }
 }

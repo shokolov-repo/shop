@@ -20,7 +20,6 @@ public class Servlet extends HttpServlet {
         if (command != null) {
             CommandMap.getCommand(command).execute(req, resp);
         } else {
-            req.setAttribute("error", "wrong email or password");
             CommandMap.getCommand("indexPage").execute(req, resp);
         }
     }
@@ -31,7 +30,6 @@ public class Servlet extends HttpServlet {
         if (command != null) {
             CommandMap.getCommand(command).execute(req, resp);
         } else {
-            req.setAttribute("error", "wrong email or password");
             CommandMap.getCommand("indexPage").execute(req, resp);
         }
     }

@@ -24,5 +24,6 @@ public class CustomerPage implements Command {
         List<Order> orders = orderDAO.findAllByUserId(user.getId());
         req.setAttribute("orders", orders);
         req.getRequestDispatcher("/customerPage.jsp").forward(req, resp);
+
     }
 }

@@ -8,6 +8,7 @@
 <div style="float: right;">
 
     <c:out value="${user.firstName}"/>
+    <c:out value=", ${error}"/>
     <a href="dispatcher?command=indexPage"><input type="submit" value="home"/></a>
     <a href="dispatcher?command=customerPage"><input type="submit" value="My profile"/></a>
     <a href="dispatcher?command=cart"><input type="submit" value="cart"/></a>

@@ -20,7 +20,7 @@ public class CommentDAOImpl implements CommentDAO {
     private String CREATE = "INSERT INTO COMMENTS (PRODUCT_ID , USER_ID , USER_NAME , CONTENT )" +
             "VALUES ( ? , ? , ? , ? )";
     private String UPDATE = "UPDATE COMMENTS SET CONTENT = ?  WHERE ID = ?";
-    private String DELETE = "DELETE FROM COMMENTS WHERE ID = ?";
+    private String DELETE = "DELETE FROM COMMENTS WHERE USER_ID = ?";
     private String FIND_BY_USER_ID = "SELECT * FROM COMMENTS WHERE USER_ID = ? ";
     private String FIND_BY_PRODUCT_ID = "SELECT * FROM COMMENTS WHERE PRODUCT_ID = ?";
     Connection connection;
@@ -73,11 +73,11 @@ public class CommentDAOImpl implements CommentDAO {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(long userId) {
         connection = ConnectionDB.createConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(DELETE);
-            statement.setLong(1, id);
+            statement.setLong(1, userId);
             int i = statement.executeUpdate();
 
             if (i == 0) {

@@ -18,21 +18,18 @@ public class CommandMap {
         commandMap.put("registration", new Registration());
         commandMap.put("editProfile", new EditProfile());
         commandMap.put("customerPage", new CustomerPage());
-        commandMap.put("findAll", new FindAllOrders());
         commandMap.put("sellerPage", new SellerPage());
         commandMap.put("adminPage", new AdminPage());
         commandMap.put("addProductToCart", new AddProductToCart());
         commandMap.put("cart", new Cart());
-        commandMap.put("delFromCart",new DelFromCart());
-        commandMap.put("orderPage",new OrderPage());
-
-        commandMap.put("replaceRole", new ReplaceRole());
-        commandMap.put("addUser", new AdminPage());
+        commandMap.put("delFromCart", new DelFromCart());
+        commandMap.put("orderPage", new OrderPage());
         commandMap.put("deleteUser", new DeleteUser());
-        commandMap.put("updateUserComment", new UpdateUserComments());
-        commandMap.put("buy", new Buy());
-
-
+        commandMap.put("createUser", new CreateUser());
+        commandMap.put("editUser", new EditUser());
+        commandMap.put("edit", new Edit());
+        commandMap.put("editStatus", new EditStatus());
+        commandMap.put("getCustomer", new GetCustomer());
     }
 
     public static Command getCommand(String name) {

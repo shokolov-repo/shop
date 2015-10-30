@@ -19,10 +19,18 @@ public class DelFromCart implements Command {
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        double totalPrice = 0.0d;
         ProductDAO productDAO = new ProductDAOImpl();
         List<Product> cart = (LinkedList<Product>) req.getSession().getAttribute("cart");
         String id = req.getParameter("id");
         cart.remove(productDAO.findById(Long.valueOf(id)));
+
+        if (cart.size() > 0) {
+            for (Product cartProduct : cart) {
+                totalPrice += cartProduct.getPrice();
+            }
+        }
+        req.setAttribute("totalPrice", totalPrice);
         req.getSession().setAttribute("cart", cart);
         req.getRequestDispatcher("/cart.jsp").forward(req, resp);
     }

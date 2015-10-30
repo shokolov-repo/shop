@@ -10,33 +10,25 @@
 <html>
 <head>
     <title>AdminPage</title>
-    <style>
-        div {
-            padding: 5px;
-            margin-bottom: 5px;
-        }
-    </style>
 </head>
 <body>
-<div>
-    <p style="text-align: right;">
-        <a href="dispatcher?command=logout">
-            <input type="submit" value="logout"/>
-        </a>
-    </p>
+<div style="color: #BA0000;"><c:out value="${error}"/></div>
+<div style="text-align: right;">
+
+    <a href="dispatcher?command=logout"><input type="submit" value="logout"/></a>
+    <a href="createUser.jsp"><input type="submit" value="create user"/></a>
 </div>
 <table border="1">
-    <header>
-        <td>first name</td>
-        <td>last name</td>
-        <td>address</td>
-        <td>phone</td>
-        <td>email</td>
-        <td>role</td>
-        <td>delete</td>
-        <td>edit</td>
-        <td>edit comment</td>
-    </header>
+    <tr>
+        <th>first name</th>
+        <th>last name</th>
+        <th>address</th>
+        <th>phone</th>
+        <th>email</th>
+        <th>role</th>
+        <th>delete</th>
+        <th>edit</th>
+    </tr>
     <c:forEach var="user" items="${users}">
     <tr>
         <td><c:out value="${user.firstName}"/></td>
@@ -45,9 +37,8 @@
         <td><c:out value="${user.phone}"/></td>
         <td><c:out value="${user.email}"/></td>
         <td><c:out value="${user.role}"/></td>
-        <td><a href="dispatcher?command=deleteUser">delete user</a></td>
-        <td><a href="dispatcher?command=editUser">edit user</a></td>
-        <td><a href="dispatcher?command=editUserComment">edit comment</a></td>
+        <td><a href="dispatcher?command=deleteUser&id=${user.id}">delete user</a></td>
+        <td><a href="dispatcher?command=editUser&id=${user.id}">edit user</a></td>
     </tr>
     </c:forEach>
 </body>

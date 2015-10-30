@@ -104,7 +104,7 @@ public class ProductSoldDAOImpl implements ProductSoldDAO {
             statement.setLong(1, orderId);
             resultSet = statement.executeQuery();
 
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 productsSold.add(getProductSold(resultSet));
             }
 

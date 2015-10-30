@@ -52,10 +52,10 @@ public class CommentDAOImplTest extends BeforeTestShop {
     public void testDelete() throws Exception {
 //      when
         commentDAO.delete(2);
-        List<Comment> comments = commentDAO.findByProductId(2);
+        List<Comment> comments = commentDAO.findByUserId(2);
 
 //      then
-        assertEquals(comments.size(), 0);
+        assertEquals(0,comments.size());
     }
 
     @Test

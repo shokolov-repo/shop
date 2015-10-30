@@ -21,7 +21,7 @@ public class UserDAOImpl implements UserDAO {
     private String CREATE = "INSERT INTO USERS ( FIRST_NAME , LAST_NAME , ADDRESS , PHONE ,  EMAIL , PASSWORD, ROLE )" +
             "VALUES ( ? , ? , ? , ? , ? , ? , ? )";
     private String UPDATE = "UPDATE USERS SET FIRST_NAME = ?, LAST_NAME = ?, ADDRESS = ?, PHONE = ?, EMAIL = ? , " +
-            "PASSWORD = ? WHERE ID = ?";
+            "PASSWORD = ?, ROLE = ? WHERE ID = ?";
     private String DELETE = "DELETE FROM USERS WHERE ID = ?";
     private String FIND_BY_ID = "SELECT * FROM USERS WHERE ID = ?";
     private String FIND_BY_EMAIL = "SELECT * FROM USERS WHERE EMAIL = ?";
@@ -45,7 +45,7 @@ public class UserDAOImpl implements UserDAO {
             statement.setString(4, user.getPhone());
             statement.setString(5, user.getEmail());
             statement.setString(6, user.getPassword());
-            statement.setString(7, "Customer");
+            statement.setString(7, user.getRole());
             int i = statement.executeUpdate();
 
             if (i == 0) {
@@ -71,7 +71,8 @@ public class UserDAOImpl implements UserDAO {
             statement.setString(4, user.getPhone());
             statement.setString(5, user.getEmail());
             statement.setString(6, user.getPassword());
-            statement.setLong(7, user.getId());
+            statement.setString(7, user.getRole());
+            statement.setLong(8, user.getId());
             int i = statement.executeUpdate();
 
             if (i == 0) {
@@ -79,6 +80,7 @@ public class UserDAOImpl implements UserDAO {
             }
         } catch (SQLException e) {
             logger.error(e.getMessage());
+            throw new IllegalArgumentException(e);
         } finally {
             ConnectionDB.closeConnection(connection);
         }
@@ -124,6 +126,9 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public User findByEmail(String email) {
         User user = null;
+        if (email == null || email.equals("")) {
+            return null;
+        }
         ResultSet resultSet;
         connection = ConnectionDB.createConnection();
 

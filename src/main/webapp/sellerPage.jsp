@@ -7,18 +7,11 @@
 <body>
 
 
-<div>
-    <p style="text-align: right;">
-        <%
-            out.print(session.getAttribute("name"));
-        %>
-        <a href="dispatcher?command=logout">
-            <input type="submit" value="logout"/>
-        </a>
-        <a href="editProfile.jsp">
-            <button type="submit" value="update account">update account</button>
-        </a>
-    </p>
+<div style="float: right;">
+
+    <c:out value="${user.firstName}"/>
+    <a href="dispatcher?command=logout"><input type="submit" value="logout"/></a>
+
 </div>
 <table border="1">
     <header>
@@ -29,10 +22,10 @@
     </header>
     <c:forEach var="order" items="${orders}">
         <tr>
-            <td><c:out value="${order.userId}"/></td>
             <td><c:out value="${order.dateOrder}"/></td>
             <td><c:out value="${order.status}"/></td>
-            <td><a href="dispatcher?command=editStatus&orderId='${order.id}">edit status</a></td>
+            <td><a href="dispatcher?command=getCustomer&id=${order.id}"><input type="submit" value="customer data"/></a></td>
+            <td><a href="dispatcher?command=editStatus&id=${order.id}"><input type="submit" value="edit status"/></a></td>
         </tr>
     </c:forEach>
 </table>
