@@ -6,6 +6,7 @@
 </head>
 <body>
 <div style="text-align: right;">
+    <c:out value="${principal.firstName}"/>
     <a href="dispatcher?command=sellerPage"><input type="submit" value="home"/></a>
     <a href="dispatcher?command=logout"><input type="submit" value="logout"/></a>
 </div>

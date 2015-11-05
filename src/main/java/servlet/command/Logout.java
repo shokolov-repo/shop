@@ -17,9 +17,9 @@ public class Logout implements Command {
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getSession().removeAttribute("user");
+        req.getSession().removeAttribute("principal");
         req.getSession().removeAttribute("cart");
-        CommandMap.getCommand("indexPage").execute(req, resp);
+        req.getRequestDispatcher("dispatcher?command=indexPage").forward(req, resp);
     }
 }
 

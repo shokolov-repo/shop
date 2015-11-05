@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>edit profile</title>
+    <title>edit user</title>
 </head>
 <body>
 <form method="post" action="dispatcher?command=edit&id=${user.id}">
@@ -13,54 +13,71 @@
         <tr>
             <th colspan="2">Enter new data here</th>
         </tr>
-        <c:if test="${error!=null}">
-            <tr>
-                <th colspan="2" style="color: #BA0000;">
-                    <c:out value="${error}"/>
-                </th>
-            </tr>
-        </c:if>
         </thead>
         <tbody>
         <tr>
-            <td>Enter new Role</td>
+            <td>Role</td>
             <td>
-                <select  name="role">
-                <option value="customer">customer</option>
-                <option value="seller">seller</option>
-                <option value="admin">admin</option>
-            </select>
+                <select name="role">
+                    <option value="customer">customer</option>
+                    <option value="seller">seller</option>
+                    <option value="admin">admin</option>
+                </select>
             </td>
         </tr>
         <tr>
-            <td>Enter new First Name</td>
+            <td>First Name</td>
             <td><input type="text" name="firstName" value="${user.firstName}"/></td>
+        <tr>
+            <c:if test="${errors.firstName!=null}">
+                <th colspan="2">
+                    <div style="color: #BA0000;"><c:out value="${errors.firstName}"/></div>
+                </th>
+            </c:if>
+        </tr>
         </tr>
         <tr>
-            <td>Enter new Last Name</td>
+            <td>Last Name</td>
             <td><input type="text" name="lastName" value="${user.lastName}"/></td>
+        <tr>
+            <c:if test="${errors.lastName!=null}">
+                <th colspan="2">
+                    <div style="color: #BA0000;"><c:out value="${errors.lastName}"/></div>
+                </th>
+            </c:if>
+        </tr>
         </tr>
         <tr>
-            <td>Enter new Address</td>
+            <td>Address</td>
             <td><input type="text" name="address" value="${user.address}"/></td>
         </tr>
         <tr>
-            <td>Enter new Phone</td>
-            <td><input type="text" name="phone" value="${user.phone}"/></td>
+            <td>Phone</td>
+            <td><input type="text" name="phone" value="${user.phone}" placeholder="xxx-xxx-xx-xx"/></td>
         </tr>
         <tr>
-            <td>Enter new Email</td>
-            <td><input type="email" name="email" value="${user.email}" required/></td>
+            <c:if test="${errors.phone!=null}">
+                <th colspan="2">
+                    <div style="color: #BA0000;"><c:out value="${errors.phone}"/></div>
+                </th>
+            </c:if>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td><input type="password" name="password" value="${user.password}"/></td>
+        </tr>
+        <tr>
+            <c:if test="${errors.password!=null}">
+                <th colspan="2">
+                    <div style="color: #BA0000;"><c:out value="${errors.password}"/></div>
+                </th>
+            </c:if>
         </tr>
 
         <tr>
-            <td>Enter new Password</td>
-            <td><input type="password" name="password" value="${user.password}" required/></td>
-        </tr>
-               <tr>
             <td></td>
             <td><input type="submit" value="submit"/>
-            <input type="reset" value="Reset"/></td>
+                <input type="reset" value="Reset"/></td>
         </tr>
         <tr>
             <td colspan="2"><a href="dispatcher?command=adminPage">Back</a></td>

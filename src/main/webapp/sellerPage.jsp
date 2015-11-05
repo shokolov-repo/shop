@@ -9,7 +9,7 @@
 
 <div style="float: right;">
 
-    <c:out value="${user.firstName}"/>
+    <c:out value="${principal.firstName}"/>
     <a href="dispatcher?command=logout"><input type="submit" value="logout"/></a>
 
 </div>

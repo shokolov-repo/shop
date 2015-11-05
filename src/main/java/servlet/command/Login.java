@@ -6,7 +6,6 @@ import entity.Product;
 import entity.User;
 import org.apache.log4j.Logger;
 import servlet.Command;
-import servlet.CommandMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +30,7 @@ public class Login implements Command {
 
         if (user != null && user.getPassword().equals(req.getParameter("password"))) {
             HttpSession session = req.getSession();
-            session.setAttribute("user", user);
+            session.setAttribute("principal", user);
 
             switch (user.getRole()) {
                 case "customer":
@@ -48,7 +47,7 @@ public class Login implements Command {
             }
         } else {
             req.setAttribute("error", "wrong email or password");
-            CommandMap.getCommand("indexPage").execute(req, resp);
+            req.getRequestDispatcher("dispatcher?command=indexPage").forward(req, resp);
         }
     }
 }

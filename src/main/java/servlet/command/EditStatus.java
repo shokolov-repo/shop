@@ -28,7 +28,6 @@ public class EditStatus implements Command {
             order.setStatus("check");
             orderDAO.update(order);
         }
-        CommandMap.getCommand("sellerPage").execute(req, resp);
-
+        req.getRequestDispatcher("dispatcher?command=sellerPage").forward(req, resp);
     }
 }

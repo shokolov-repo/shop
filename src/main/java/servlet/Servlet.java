@@ -20,7 +20,7 @@ public class Servlet extends HttpServlet {
         if (command != null) {
             CommandMap.getCommand(command).execute(req, resp);
         } else {
-            CommandMap.getCommand("indexPage").execute(req, resp);
+            req.getRequestDispatcher("dispatcher?command=indexPage").forward(req, resp);
         }
     }
 
@@ -30,7 +30,7 @@ public class Servlet extends HttpServlet {
         if (command != null) {
             CommandMap.getCommand(command).execute(req, resp);
         } else {
-            CommandMap.getCommand("indexPage").execute(req, resp);
+            req.getRequestDispatcher("dispatcher?command=indexPage").forward(req, resp);
         }
     }
 }

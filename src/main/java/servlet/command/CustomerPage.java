@@ -20,7 +20,7 @@ public class CustomerPage implements Command {
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = (User) req.getSession().getAttribute("user");
+        User user = (User) req.getSession().getAttribute("principal");
         List<Order> orders = orderDAO.findAllByUserId(user.getId());
         req.setAttribute("orders", orders);
         req.getRequestDispatcher("/customerPage.jsp").forward(req, resp);

@@ -4,7 +4,6 @@ import dao.ProductDAO;
 import dao.impl.ProductDAOImpl;
 import entity.Product;
 import servlet.Command;
-import servlet.CommandMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -27,10 +26,10 @@ public class AddProductToCart implements Command {
         if (!cart.contains(product)) {
             cart.add(product);
         } else {
-            req.setAttribute("error","cart contains this product");
+            req.setAttribute("error", "cart contains this product");
         }
         req.getSession().setAttribute("cart", cart);
-        CommandMap.getCommand("indexPage").execute(req, resp);
+        req.getRequestDispatcher("dispatcher?command=indexPage").forward(req, resp);
 
 
     }

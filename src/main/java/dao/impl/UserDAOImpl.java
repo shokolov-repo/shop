@@ -31,10 +31,6 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void create(User user) {
-        if (user == null) {
-            logger.info("User == null");
-            return;
-        }
         connection = ConnectionDB.createConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(CREATE);
@@ -80,7 +76,6 @@ public class UserDAOImpl implements UserDAO {
             }
         } catch (SQLException e) {
             logger.error(e.getMessage());
-            throw new IllegalArgumentException(e);
         } finally {
             ConnectionDB.closeConnection(connection);
         }

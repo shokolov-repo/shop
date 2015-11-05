@@ -5,9 +5,14 @@
     <title>Customer Page</title>
 </head>
 <body>
+<c:if test="${info!=null}">
+    <div style="color: #BA0000;">
+        <c:out value="${info}"/>
+    </div>
+</c:if>
 <div style="float: right;">
 
-    <c:out value="${user.firstName}"/>
+    <c:out value="${principal.firstName}"/>
 
     <a href="dispatcher?command=indexPage"><input type="submit" value="home"/></a>
     <a href="dispatcher?command=cart"><input type="submit" value="cart"/></a>
@@ -15,6 +20,11 @@
     <a href="dispatcher?command=logout"><input type="submit" value="logout"/></a>
 
 </div>
+<c:if test="${error!=null}">
+    <div style="color: #BA0000;">
+        <c:out value="${error}"/>
+    </div>
+</c:if>
 <table border="1">
     <header>
         <td>date order</td>

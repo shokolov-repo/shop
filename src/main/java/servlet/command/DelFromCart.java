@@ -16,11 +16,11 @@ import java.util.List;
  * Created by dmity on 27.10.15.
  */
 public class DelFromCart implements Command {
+    ProductDAO productDAO = new ProductDAOImpl();
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         double totalPrice = 0.0d;
-        ProductDAO productDAO = new ProductDAOImpl();
         List<Product> cart = (LinkedList<Product>) req.getSession().getAttribute("cart");
         String id = req.getParameter("id");
         cart.remove(productDAO.findById(Long.valueOf(id)));
