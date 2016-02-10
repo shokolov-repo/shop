@@ -3,98 +3,81 @@
 <html>
 <head>
     <title>create user</title>
+
+    <link rel="stylesheet" type="text/css" href="styles/form-styles.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap-theme.css"/>
 </head>
 
 <body>
-<div style="float: right;">
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="dispatcher?command=adminPage">Shop</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav  navbar-right">
+                <li>
+                    <a href="dispatcher?command=adminPage"><span class="glyphicon glyphicon-home"></span> Home</a>
+                </li>
+                <li>
+                    <a href="dispatcher?command=logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-    <c:out value="${principal.firstName}"/>
-
-    <a href="dispatcher?command=adminPage"><input type="submit" value="home"/></a>
-    <a href="dispatcher?command=logout"><input type="submit" value="logout"/></a>
-
-</div>
-<form method="post" action="dispatcher?command=createUser">
-    <table border="1" width="30%" cellpadding="5">
-        <thead>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Role</td>
-            <td>
-                <select name="role">
+<div class="container">
+      <div class="form-container">
+        <form class="form-signin" method="post" action="dispatcher?command=createUser">
+            <h2 class="form-signin-heading">Create user form</h2>
+            <div class="form-group-lg">
+                <select class="form-control" name="role">
                     <option value="customer">customer</option>
                     <option value="seller">seller</option>
                     <option value="admin">admin</option>
                 </select>
-            </td>
-        </tr>
-        <tr>
-            <td>First Name</td>
-            <td><input type="text" name="firstName" value="${user.firstName}"/></td>
-        <tr>
-            <c:if test="${errors.firstName!=null}">
-                <th colspan="2">
-                    <div style="color: #BA0000;"><c:out value="${errors.firstName}"/></div>
-                </th>
-            </c:if>
-        </tr>
-        </tr>
-        <tr>
-            <td>Last Name</td>
-            <td><input type="text" name="lastName" value="${user.lastName}"/></td>
-        <tr>
-            <c:if test="${errors.lastName!=null}">
-                <th colspan="2">
-                    <div style="color: #BA0000;"><c:out value="${errors.lastName}"/></div>
-                </th>
-            </c:if>
-        </tr>
-        </tr>
-        <tr>
-            <td>Address</td>
-            <td><input type="text" name="address" value="${user.address}"/></td>
-        </tr>
-        <tr>
-            <td>Phone</td>
-            <td><input type="tel" name="phone" value="${user.phone}" placeholder="xxx-xxx-xx-xx"/></td>
-        <tr>
-            <c:if test="${errors.phone!=null}">
-                <th colspan="2">
-                    <div style="color: #BA0000;"><c:out value="${errors.phone}" /></div>
-                </th>
-            </c:if>
-        </tr>
-        </tr>
-        <tr>
-            <td>Email</td>
-            <td><input type="text" name="email" value="${user.email}"/></td>
-        <tr>
-            <c:if test="${errors.email!=null}">
-                <th colspan="2">
-                    <div style="color: #BA0000;"><c:out value="${errors.email}"/></div>
-                </th>
-            </c:if>
-        </tr>
-        </tr>
-        <tr>
-            <td>Password</td>
-            <td><input type="password" name="password" value="${user.password}"/></td>
-        <tr>
-            <c:if test="${errors.password!=null}">
-                <th colspan="2">
-                    <div style="color: #BA0000;"><c:out value="${errors.password}"/></div>
-                </th>
-            </c:if>
-        </tr>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="create"/> <input type="reset" value="reset"/></td>
-        </tr>
+                <input class="form-control" type="text" name="firstName" placeholder="First Name"
+                       value="${user.firstName}"/>
+                <c:if test="${errors.firstName!=null}">
+                    <span class="form-span"><c:out value="${errors.firstName}"/></span>
+                </c:if>
 
-        </tbody>
-    </table>
-</form>
+                <input class="form-control" type="text" name="lastName" placeholder="Last Name"
+                       value="${user.lastName}"/>
+                <c:if test="${errors.lastName!=null}">
+                    <span class="form-span"><c:out value="${errors.lastName}"/></span>
+                </c:if>
+
+                <input class="form-control" type="text" name="address" placeholder="Address" value="${user.address}"/>
+                <c:if test="${errors.address!=null}">
+                    <span class="form-span"> <c:out value="${errors.address}"/></span>
+                </c:if>
+
+                <input class="form-control" type="text" name="phone" value="${user.phone}"
+                       placeholder="Phone xxx-xxx-xx-xx"/>
+                <c:if test="${errors.phone!=null}">
+                    <span class="form-span"><c:out value="${errors.phone}"/></span>
+                </c:if>
+
+                <input class="form-control" type="email" name="email" placeholder="Email" value="${user.email}"/>
+                <c:if test="${errors.email!=null}">
+                    <span class="form-span"><c:out value="${errors.email}"/></span>
+                </c:if>
+
+                <input class="form-control" type="password" name="password" placeholder="Password"
+                       value="${user.password}"/>
+                <c:if test="${errors.password!=null}">
+                    <span class="form-span"><c:out value="${errors.password}"/></span>
+                </c:if>
+            </div>
+            <div class="btn-block">
+                <input class="btn btn-info" type="submit" value="create"/>
+                <input class="btn btn-default" type="reset" value="reset"/>
+            </div>
+        </form>
+    </div>
+</div>
 </body>
 </html>

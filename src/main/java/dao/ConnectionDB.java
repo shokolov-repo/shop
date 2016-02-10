@@ -41,9 +41,13 @@ public abstract class ConnectionDB {
         driver = properties.getProperty("driver");
 
         try {
-            Class.forName(driver);
+            Class.forName(driver).newInstance();
         } catch (ClassNotFoundException e) {
             logger.trace("Driver is not exist.");
+        } catch (InstantiationException e) {
+            logger.trace(e);
+        } catch (IllegalAccessException e) {
+            logger.trace(e);
         }
     }
 
@@ -51,6 +55,7 @@ public abstract class ConnectionDB {
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(url, user, passWord);
+            logger.info("Connection was create.");
         } catch (SQLException e) {
             logger.trace(e);
         }
@@ -60,6 +65,7 @@ public abstract class ConnectionDB {
     public static void closeConnection(Connection connection) {
         try {
             connection.close();
+            logger.info("Connection was close.");
         } catch (SQLException e) {
             logger.error("Connection not close.");
         }

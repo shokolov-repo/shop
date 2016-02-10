@@ -53,7 +53,7 @@ public class EditProfile implements Command {
         } else {
             userDAO.update(user);
             req.setAttribute("info", "Profile was edit.");
-            req.getRequestDispatcher("dispatcher?command=customerPage").forward(req, resp);
+            req.getRequestDispatcher("/editProfile.jsp").forward(req, resp);
         }
     }
 
@@ -63,17 +63,14 @@ public class EditProfile implements Command {
         if (!req.getParameter("firstName").matches(NAME_REGEX)) {
             errors.put("firstName", "First Name can contain only letters.");
         }
-        if (StringUtils.isBlank(req.getParameter("firstName"))) {
-            errors.put("firstName", "First Name field is required. Please enter value.");
-        }
         if (!req.getParameter("lastName").matches(NAME_REGEX)) {
             errors.put("lastName", "Last Name can contain only letters.");
         }
         if (StringUtils.isBlank(req.getParameter("password1")) & StringUtils.isNotBlank(req.getParameter("password2"))) {
-            errors.put("password1", "Password Name field is required. Please enter value.");
+            errors.put("password1", "Password field is required. Please enter value.");
         }
         if (StringUtils.isNotBlank(req.getParameter("password1")) & StringUtils.isBlank(req.getParameter("password2"))) {
-            errors.put("password2", "Password Name field is required. Please enter value.");
+            errors.put("password2", "Password field is required. Please enter value.");
         }
         if (StringUtils.isNotBlank(req.getParameter("password1")) && StringUtils.isNotBlank(req.getParameter("password2"))
                 && !req.getParameter("password1").equals(req.getParameter("password2"))) {
@@ -82,7 +79,6 @@ public class EditProfile implements Command {
         if (StringUtils.isNotBlank(req.getParameter("phone")) && !req.getParameter("phone").matches(PHONE_REGEX)) {
             errors.put("phone", "Enter a correct phone number to format 123-456-78-90.");
         }
-
         return errors;
     }
 }

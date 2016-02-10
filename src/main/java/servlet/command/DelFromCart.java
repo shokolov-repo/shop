@@ -4,6 +4,7 @@ import dao.ProductDAO;
 import dao.impl.ProductDAOImpl;
 import entity.Product;
 import servlet.Command;
+import view.ProductCart;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,22 +17,30 @@ import java.util.List;
  * Created by dmity on 27.10.15.
  */
 public class DelFromCart implements Command {
-    ProductDAO productDAO = new ProductDAOImpl();
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        double totalPrice = 0.0d;
-        List<Product> cart = (LinkedList<Product>) req.getSession().getAttribute("cart");
+        List<ProductCart> cart = (LinkedList<ProductCart>) req.getSession().getAttribute("cart");
         String id = req.getParameter("id");
-        cart.remove(productDAO.findById(Long.valueOf(id)));
+        long productId = Long.valueOf(id);
+        ProductCart product = null;
 
-        if (cart.size() > 0) {
-            for (Product cartProduct : cart) {
-                totalPrice += cartProduct.getPrice();
+        for (ProductCart productCart : cart) {
+            if (productCart.getId() == productId) {
+                product = productCart;
+//                break;
+//            }
+//        }
+//
+//        if (product != null && product.getQuantity() > 1) {
+//            product.setQuantity(product.getQuantity() - 1);
+//        } else {
+
             }
         }
-        req.setAttribute("totalPrice", totalPrice);
+        cart.remove(product);
+
         req.getSession().setAttribute("cart", cart);
-        req.getRequestDispatcher("/cart.jsp").forward(req, resp);
+        req.getRequestDispatcher("dispatcher?command=cart").forward(req, resp);
     }
 }

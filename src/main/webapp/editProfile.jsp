@@ -5,120 +5,109 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>edit profile</title>
+    <link rel="stylesheet" type="text/css" href="styles/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/form-styles.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap-theme.css"/>
 </head>
 <body>
-<div style="float: right;"><c:out value="${principal.firstName}"/></div>
-<form method="post" action="dispatcher?command=editProfile">
-    <table border="1" width="30%" cellpadding="5">
-        <thead>
-        <tr>
-            <th colspan="2">Enter new data here</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>First Name</td>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="dispatcher?command=indexPage">Shop</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav  navbar-right">
+                <li>
+                    <a href="dispatcher?command=indexPage"><span class="glyphicon glyphicon-home"></span> Home</a>
+                </li>
+                <li><a href="dispatcher?command=cart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a>
+                </li>
+                <li>
+                    <a href="dispatcher?command=customerPage"><span class="glyphicon glyphicon-user"></span> My profile</a>
+                </li>
+                <li>
+                    <a href="dispatcher?command=logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="form-container">
+    <form class="form-signin" method="post" action="dispatcher?command=editProfile">
+        <h2 class="form-signin-heading">Enter new data here</h2>
+        <c:if test="${info!=null}">
+            <span class="form-span"><c:out value="${info}"/></span>
+        </c:if>
+        <div class="form-group-lg">
             <c:if test="${user==null}">
-            <td><input type="text" name="firstName" value="${principal.firstName}"/></td>
+                <input class="form-control" type="text" name="firstName" placeholder="${principal.firstName}"/>
             </c:if>
             <c:if test="${user!=null}">
-            <td><input type="text" name="firstName" value="${user.firstName}"/></td>
+                <input class="form-control" type="text" name="firstName" placeholder="${user.firstName}"/>
             </c:if>
-        <tr>
             <c:if test="${errors.firstName!=null}">
-                <th colspan="2">
-                    <div style="color: #BA0000;"><c:out value="${errors.firstName}"/></div>
-                </th>
+                <span class="form-span"><c:out value="${errors.firstName}"/></span>
             </c:if>
-        </tr>
-        </tr>
-        <tr>
-            <td>Last Name</td>
+
             <c:if test="${user==null}">
-            <td><input type="text" name="lastName" value="${principal.lastName}"/></td>
+                <input class="form-control" type="text" name="lastName" placeholder="${principal.lastName}"/>
             </c:if>
             <c:if test="${user!=null}">
-            <td><input type="text" name="lastName" value="${user.lastName}"/></td>
+                <input class="form-control" type="text" name="lastName" placeholder="${user.lastName}"/>
             </c:if>
-        <tr>
             <c:if test="${errors.lastName!=null}">
-                <th colspan="2">
-                    <div style="color: #BA0000;"><c:out value="${errors.lastName}"/></div>
-                </th>
+                <span class="form-span"><c:out value="${errors.lastName}"/></span>
             </c:if>
-        </tr>
-        </tr>
-        <tr>
-            <td>Address</td>
+
             <c:if test="${user==null}">
-                <td><input type="text" name="address" value="${principal.address}"/></td>
+                <input class="form-control" type="text" name="address" placeholder="${principal.address}"/>
             </c:if>
             <c:if test="${user!=null}">
-                <td><input type="text" name="address" value="${user.address}"/></td>
+                <input class="form-control" type="text" name="address" placeholder="${user.address}"/>
             </c:if>
-        </tr>
-        <tr>
-            <td>Phone</td>
+            <c:if test="${errors.address!=null}">
+                <span class="form-span"><c:out value="${errors.address}"/></span>
+            </c:if>
+
             <c:if test="${user==null}">
-            <td><input type="tel" name="phone" value="${principal.phone}" placeholder="xxx-xxx-xx-xx"/></td>
+                <input class="form-control" type="tel" name="phone" placeholder="${principal.phone}"/>
             </c:if>
             <c:if test="${user!=null}">
-            <td><input type="tel" name="phone" value="${user.phone}" placeholder="xxx-xxx-xx-xx"/></td>
+                <input class="form-control" type="tel" name="phone" placeholder="${user.phone}"/>
             </c:if>
-        <tr>
             <c:if test="${errors.phone!=null}">
-                <th colspan="2">
-                    <div style="color: #BA0000;"><c:out value="${errors.phone}"/></div>
-                </th>
+                <span class="form-span"><c:out value="${errors.phone}"/></span>
             </c:if>
-        </tr>
-        <tr>
-            <td>Password</td>
+
             <c:if test="${user==null}">
-                <td><input type="text" name="password1" value="${principal.password}"/></td>
+                <input class="form-control" type="password" name="password1" placeholder="${principal.password}"/>
             </c:if>
             <c:if test="${user!=null}">
-                <td><input type="text" name="password1" value="${user.password}"/></td>
+                <input class="form-control" type="password" name="password1" placeholder="${user.password}"/>
             </c:if>
-        </tr>
-        <tr>
             <c:if test="${errors.password1!=null}">
-                <th colspan="2">
-                    <div style="color: #BA0000;"><c:out value="${errors.password1}"/></div>
-                </th>
+                <span class="form-span"><c:out value="${errors.password1}"/></span>
             </c:if>
-        </tr>
-        <tr>
-            <td>Confirm Password</td>
+
             <c:if test="${user==null}">
-                <td><input type="text" name="password2" value="${principal.password}"/></td>
+                <input class="form-control" type="password" name="password2" placeholder="${principal.password}"/>
             </c:if>
             <c:if test="${user!=null}">
-                <td><input type="text" name="password2" value="${user.password}"/></td>
-            </c:if></tr>
-        <tr>
+                <input class="form-control" type="password" name="password2" placeholder="${user.password}"/>
+            </c:if>
             <c:if test="${errors.password2!=null}">
-                <th colspan="2">
-                    <div style="color: #BA0000;"><c:out value="${errors.password2}"/></div>
-                </th>
+                <span class="form-span"><c:out value="${errors.password2}"/></span>
             </c:if>
-        </tr>
-        <tr>
-            <c:if test="${errors.password!=null&&errors.password1==null&&errors.password2==null}">
-                <th colspan="2">
-                    <div style="color: #BA0000;"><c:out value="${errors.password}"/></div>
-                </th>
+            <c:if test="${errors.password!=null}">
+                <span class="form-span"><c:out value="${errors.password}"/></span>
             </c:if>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="edit"/> <input type="reset" value="Reset"/></td>
-        </tr>
-        <tr>
-            <td colspan="2"><a href="dispatcher?command=customerPage">Back to my profile</a></td>
-        </tr>
-        </tbody>
-    </table>
-</form>
+        </div>
+        <div class="btn-block">
+            <input class="btn btn-success" type="submit" value="Edit"/>
+            <input class="btn btn-default" type="reset" value="Reset"/>
+        </div>
+    </form>
+</div>
 </body>
 </html>

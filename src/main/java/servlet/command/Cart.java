@@ -2,6 +2,7 @@ package servlet.command;
 
 import entity.Product;
 import servlet.Command;
+import view.ProductCart;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,18 +16,17 @@ import java.util.List;
  */
 public class Cart implements Command {
 
-    List<Product> cart = new LinkedList<>();
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        double totalPrice = 0.0d;
-        cart = (List<Product>) req.getSession().getAttribute("cart");
+        double cost = 0.0d;
+        List<ProductCart> cart = (List<ProductCart>) req.getSession().getAttribute("cart");
 
         if (cart.size() > 0) {
-            for (Product cartProduct : cart) {
-                totalPrice += cartProduct.getPrice();
+            for (ProductCart cartProduct : cart) {
+                cost += cartProduct.getPrice() * cartProduct.getQuantity();
             }
-            req.setAttribute("totalPrice", totalPrice);
+            req.setAttribute("cost", cost);
         }
         req.getRequestDispatcher("/cart.jsp").forward(req, resp);
     }

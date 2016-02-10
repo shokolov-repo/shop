@@ -8,9 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Created by dmity on 20.10.15.
- */
 public class Servlet extends HttpServlet {
     Logger logger = Logger.getLogger(Servlet.class);
 

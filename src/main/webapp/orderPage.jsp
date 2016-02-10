@@ -2,30 +2,48 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title></title>
+    <title>Order page</title>
+    <link rel="stylesheet" type="text/css" href="styles/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/form-styles.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap-theme.css"/>
 </head>
 <body>
-<div style="float: right;">
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="dispatcher?command=indexPage">Shop</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="dispatcher?command=indexPage"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                <li><a href="dispatcher?command=cart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a>
+                </li>
+                <li><a href="dispatcher?command=customerPage"><span class="glyphicon glyphicon-user"></span> My profile</a>
+                </li>
+                <li><a href="dispatcher?command=logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-    <c:out value="${principal.firstName}"/>
-    <a href="dispatcher?command=indexPage"><input type="submit" value="home"/></a>
-    <a href="dispatcher?command=customerPage"><input type="submit" value="My profile"/></a>
-    <a href="dispatcher?command=cart"><input type="submit" value="cart"/></a>
-    <a href="dispatcher?command=logout"><input type="submit" value="logout"/></a>
-
-</div>
-<table border="1">
-    <header>
-        <td>title</td>
-        <td>quantity</td>
-        <td>price</td>
-    </header>
+<table class="table table-hover table-bordered">
+    <thead class="bg-info">
+    <tr>
+        <th>title</th>
+        <th>quantity</th>
+        <th>price</th>
+    </tr>
+    </thead>
     <c:forEach var="product" items="${products}">
+        <tbody>
         <tr>
             <td><c:out value="${product.title}"/></td>
             <td><c:out value="${product.quantity}"/></td>
             <td><c:out value="${product.price}"/></td>
         </tr>
+        </tbody>
     </c:forEach>
 </table>
 </body>

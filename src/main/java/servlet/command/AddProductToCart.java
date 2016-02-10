@@ -4,6 +4,7 @@ import dao.ProductDAO;
 import dao.impl.ProductDAOImpl;
 import entity.Product;
 import servlet.Command;
+import view.ProductCart;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,17 +21,26 @@ public class AddProductToCart implements Command {
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Product> cart = (List<Product>) req.getSession().getAttribute("cart");
+        List<ProductCart> cart = (List<ProductCart>) req.getSession().getAttribute("cart");
         String id = req.getParameter("id");
         Product product = productDAO.findById(Long.valueOf(id));
-        if (!cart.contains(product)) {
-            cart.add(product);
-        } else {
-            req.setAttribute("error", "cart contains this product");
+
+        ProductCart productCart = getProductCartById(cart, product.getId());
+        if (productCart == null) {
+            cart.add(new ProductCart(product));
+//        } else {
+//            productCart.setQuantity(productCart.getQuantity() + 1);
         }
         req.getSession().setAttribute("cart", cart);
         req.getRequestDispatcher("dispatcher?command=indexPage").forward(req, resp);
+    }
 
-
+    private ProductCart getProductCartById(List<ProductCart> cart, long id) {
+        for (ProductCart productCart : cart) {
+            if (productCart.getId() == id) {
+                return productCart;
+            }
+        }
+        return null;
     }
 }

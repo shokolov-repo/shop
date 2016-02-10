@@ -51,7 +51,7 @@ public class Edit implements Command {
             user.setPassword(password);
         }
         if (StringUtils.isNotBlank(role)) {
-            user.setPassword(role);
+            user.setRole(role);
         }
         if (errors.size() > 0) {
             req.setAttribute("user", user);

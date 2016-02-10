@@ -142,6 +142,7 @@ public class ProductDAOImpl implements ProductDAO {
         ResultSet resultSet;
         connection = ConnectionDB.createConnection();
 
+
         try {
             PreparedStatement statement = connection.prepareStatement(FIND_BY_PRICE);
             statement.setDouble(1, price);

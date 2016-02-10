@@ -30,6 +30,7 @@ public class CommandMap {
         commandMap.put("edit", new Edit());
         commandMap.put("editStatus", new EditStatus());
         commandMap.put("getCustomer", new GetCustomer());
+        commandMap.put("costProductCart", new CostProductCart());
     }
 
     public static Command getCommand(String name) {
