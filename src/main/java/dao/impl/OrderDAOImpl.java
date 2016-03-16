@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class OrderDAOImpl implements OrderDAO {
     Logger logger = Logger.getLogger(UserDAOImpl.class);
+    Connection connection;
     private String CREATE = "INSERT INTO ORDERS (USER_ID , DATE_ORDER , STATUS )" +
             "VALUES ( ? , ? , ? )";
     private String UPDATE = "UPDATE ORDERS SET STATUS = ? WHERE ID = ?";
@@ -24,7 +25,6 @@ public class OrderDAOImpl implements OrderDAO {
     private String FIND_ALL_BY_STATUS = "SELECT * FROM ORDERS WHERE STATUS = ?";
     private String FIND_ALL_BY_USER_ID = "SELECT * FROM ORDERS WHERE USER_ID = ?";
     private String FIND_ALL = "SELECT * FROM ORDERS";
-    Connection connection;
 
     @Override
     public void create(Order order) {
@@ -194,7 +194,8 @@ public class OrderDAOImpl implements OrderDAO {
         } catch (SQLException e) {
             logger.error(e.getMessage());
         }
-        return orders;    }
+        return orders;
+    }
 
     private Order getOrder(ResultSet resultSet) {
         Order order = new Order();

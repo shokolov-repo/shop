@@ -87,6 +87,7 @@ public class OrderDAOImplTest extends BeforeTestShop {
         assertEquals(1, orders.get(0).getId());
         assertEquals(2, orders.size());
     }
+
     @Test
     public void testFindAll() throws Exception {
 //        when

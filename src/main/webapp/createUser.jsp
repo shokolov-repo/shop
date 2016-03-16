@@ -29,9 +29,10 @@
 </nav>
 
 <div class="container">
-      <div class="form-container">
+    <div class="form-container">
         <form class="form-signin" method="post" action="dispatcher?command=createUser">
             <h2 class="form-signin-heading">Create user form</h2>
+
             <div class="form-group-lg">
                 <select class="form-control" name="role">
                     <option value="customer">customer</option>

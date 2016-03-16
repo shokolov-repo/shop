@@ -55,7 +55,7 @@ public class CommentDAOImplTest extends BeforeTestShop {
         List<Comment> comments = commentDAO.findByUserId(2);
 
 //      then
-        assertEquals(0,comments.size());
+        assertEquals(0, comments.size());
     }
 
     @Test

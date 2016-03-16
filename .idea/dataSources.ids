@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL -@localhost" uuid="9bbd1fc4-e62f-4253-a2be-3b150848b918">
+    <database-info product="MySQL" version="5.5.46-0ubuntu0.14.04.2" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="testshop"/>
+    <table name="COMMENTS" schema="" catalog="testshop" type="TABLE">
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="PRODUCT_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="USER_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="USER_NAME" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CONTENT" sqlType="VARCHAR" precision="250" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="COMMENTS_ibfk_1" columns="USER_ID" ref-table="USERS" ref-schema="" ref-catalog="testshop" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="ORDERS" schema="" catalog="testshop" type="TABLE">
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="USER_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="DATE_ORDER" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="STATUS" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="ORDERS_ibfk_1" columns="USER_ID" ref-table="USERS" ref-schema="" ref-catalog="testshop" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="PRODUCTS_SOLD_ibfk_1" table="PRODUCTS_SOLD" schema="" catalog="testshop" columns="ORDER_ID"/>
+    </table>
+    <table name="PRODUCTS" schema="" catalog="testshop" type="TABLE">
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="TITLE" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PRICE" sqlType="DOUBLE" precision="10" scale="2" nullable="false" jdbcType="8"/>
+      <column name="QUANTITY" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="250" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+    </table>
+    <table name="PRODUCTS_SOLD" schema="" catalog="testshop" type="TABLE">
+      <column name="ORDER_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="TITLE" sqlType="VARCHAR" precision="250" scale="0" nullable="false" jdbcType="12"/>
+      <column name="QUANTITY" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="PRICE" sqlType="DOUBLE" precision="10" scale="2" nullable="false" jdbcType="8"/>
+      <foreign-key name="PRODUCTS_SOLD_ibfk_1" columns="ORDER_ID" ref-table="ORDERS" ref-schema="" ref-catalog="testshop" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="USERS" schema="" catalog="testshop" type="TABLE">
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="FIRST_NAME" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="LAST_NAME" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ADDRESS" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PHONE" sqlType="VARCHAR" precision="13" scale="0" nullable="true" jdbcType="12"/>
+      <column name="EMAIL" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PASSWORD" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ROLE" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <exported-key name="COMMENTS_ibfk_1" table="COMMENTS" schema="" catalog="testshop" columns="USER_ID"/>
+      <exported-key name="ORDERS_ibfk_1" table="ORDERS" schema="" catalog="testshop" columns="USER_ID"/>
+    </table>
+  </data-source>
+  <data-source name="@localhost" uuid="3ff462b4-c516-49c6-8d1d-c7dfa507890e">
+    <database-info product="MySQL" version="5.5.46-0ubuntu0.14.04.2" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="shop"/>
+    <table name="COMMENTS" schema="" catalog="shop" type="TABLE">
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="PRODUCT_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="USER_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="USER_NAME" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CONTENT" sqlType="VARCHAR" precision="250" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+    </table>
+    <table name="ORDERS" schema="" catalog="shop" type="TABLE">
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="USER_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="DATE_ORDER" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="STATUS" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <exported-key name="PRODUCTS_SOLD_ibfk_1" table="PRODUCTS_SOLD" schema="" catalog="shop" columns="ORDER_ID"/>
+    </table>
+    <table name="PRODUCTS" schema="" catalog="shop" type="TABLE">
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="TITLE" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PRICE" sqlType="DOUBLE" precision="10" scale="2" nullable="false" jdbcType="8"/>
+      <column name="QUANTITY" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="250" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+    </table>
+    <table name="PRODUCTS_SOLD" schema="" catalog="shop" type="TABLE">
+      <column name="ORDER_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="TITLE" sqlType="VARCHAR" precision="250" scale="0" nullable="false" jdbcType="12"/>
+      <column name="QUANTITY" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="PRICE" sqlType="DOUBLE" precision="10" scale="2" nullable="false" jdbcType="8"/>
+      <foreign-key name="PRODUCTS_SOLD_ibfk_1" columns="ORDER_ID" ref-table="ORDERS" ref-schema="" ref-catalog="shop" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="USERS" schema="" catalog="shop" type="TABLE">
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="FIRST_NAME" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="LAST_NAME" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ADDRESS" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PHONE" sqlType="VARCHAR" precision="13" scale="0" nullable="true" jdbcType="12"/>
+      <column name="EMAIL" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PASSWORD" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ROLE" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <index name="EMAIL" unique="true" columns="EMAIL"/>
+    </table>
+  </data-source>
+</component>

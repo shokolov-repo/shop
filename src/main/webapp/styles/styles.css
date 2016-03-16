@@ -1,0 +1,26 @@
+/*.body {*/
+/*background: url(http://4.bp.blogspot.com/-Ek0auGwstqY/USITkC7wfcI/AAAAAAAAA6k/i-UvbPB47s4/s1600/image-wallpaper-1920-1200-Funny-Cat-Orion-Maine-Coon-kitten-LOL-cats-Ni79987411.jpg);*/
+/*}*/
+/*.top-button {*/
+/*float: right;*/
+/*}*/
+/*.table {*/
+/*border-radius: 10px;*/
+/*}*/
+
+/*.text-title {*/
+/*color: #3c763d;*/
+/*text-align: center;*/
+/*}*/
+.tab-panels .panel {
+    display: none;
+
+}
+
+.tab-panels .panel.active {
+    display: flex;
+}
+
+.input-cost {
+
+}

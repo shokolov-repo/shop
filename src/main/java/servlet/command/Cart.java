@@ -1,6 +1,5 @@
 package servlet.command;
 
-import entity.Product;
 import servlet.Command;
 import view.ProductCart;
 
@@ -8,7 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
 
 /**

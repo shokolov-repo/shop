@@ -65,5 +65,5 @@ public abstract class BeforeTestShop extends DatabaseTestCase {
     public void setUp() throws Exception {
         createTestDB();
         DatabaseOperation.CLEAN_INSERT.execute(getConnection(), getDataSet());
-   }
+    }
 }

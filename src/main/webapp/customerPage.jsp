@@ -22,7 +22,8 @@
                 <li><a href="dispatcher?command=cart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a>
                 </li>
                 <li><a href="editProfile.jsp"><span class="glyphicon glyphicon-edit"></span> Edit profile</a></li>
-                <li><a href="dispatcher?command=logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                <li><a href="dispatcher?command=logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                </li>
             </ul>
         </div>
     </div>

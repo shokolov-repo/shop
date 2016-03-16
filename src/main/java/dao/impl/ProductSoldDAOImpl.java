@@ -18,13 +18,13 @@ import java.util.List;
  */
 public class ProductSoldDAOImpl implements ProductSoldDAO {
     Logger logger = Logger.getLogger(UserDAOImpl.class);
+    Connection connection;
     private String CREATE = "INSERT INTO PRODUCTS_SOLD (ORDER_ID , TITLE , QUANTITY , PRICE )" +
             "VALUES ( ? , ? , ? , ? )";
     private String UPDATE = "UPDATE PRODUCTS_SOLD SET TITLE = ? , QUANTITY = ? , PRICE = ? WHERE ORDER_ID = ?";
     private String DELETE_ALL_BY_ORDER_ID = "DELETE FROM PRODUCTS_SOLD WHERE ORDER_ID = ?";
     private String FIND_ALL_BY_ORDER_ID = "SELECT * FROM PRODUCTS_SOLD WHERE ORDER_ID = ?";
     private String FIND_ALL = "SELECT * FROM PRODUCTS_SOLD";
-    Connection connection;
 
     @Override
     public void create(ProductSold productSold) {

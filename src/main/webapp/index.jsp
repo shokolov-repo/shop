@@ -63,10 +63,11 @@
                 <div class="panel-heading"><c:out value="title : ${product.title}"/></div>
                 <div class="panel-body"><c:out value="price : ${product.price}"/>
                     <hr/>
-                <c:out value="quantity : ${product.quantity}"/></div>
+                    <c:out value="quantity : ${product.quantity}"/></div>
                 <div class="panel-footer"><c:out value="${product.description}"/></div>
                 <c:if test="${principal!=null}">
-                    <a class="btn btn-success center-block" href="dispatcher?command=addProductToCart&id=${product.id}">add to cart</a><br/>
+                    <a class="btn btn-success center-block" href="dispatcher?command=addProductToCart&id=${product.id}">add
+                        to cart</a><br/>
                 </c:if>
             </div>
         </c:forEach>

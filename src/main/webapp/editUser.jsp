@@ -35,11 +35,11 @@
             <h2 class="form-signin-heading">Edit user form</h2>
 
             <div class="form-group-lg">
-                    <select class="form-control" name="role">
-                        <option value="customer">customer</option>
-                        <option value="seller">seller</option>
-                        <option value="admin">admin</option>
-                    </select>
+                <select class="form-control" name="role">
+                    <option value="customer">customer</option>
+                    <option value="seller">seller</option>
+                    <option value="admin">admin</option>
+                </select>
                 <input class="form-control" type="text" name="firstName" placeholder="First Name"
                        value="${user.firstName}"/>
                 <c:if test="${errors.firstName!=null}">

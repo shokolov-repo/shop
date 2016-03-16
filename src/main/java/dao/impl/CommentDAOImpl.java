@@ -1,7 +1,7 @@
 package dao.impl;
 
-import dao.ConnectionDB;
 import dao.CommentDAO;
+import dao.ConnectionDB;
 import entity.Comment;
 import org.apache.log4j.Logger;
 
@@ -17,13 +17,13 @@ import java.util.List;
  */
 public class CommentDAOImpl implements CommentDAO {
     Logger logger = Logger.getLogger(UserDAOImpl.class);
+    Connection connection;
     private String CREATE = "INSERT INTO COMMENTS (PRODUCT_ID , USER_ID , USER_NAME , CONTENT )" +
             "VALUES ( ? , ? , ? , ? )";
     private String UPDATE = "UPDATE COMMENTS SET CONTENT = ?  WHERE ID = ?";
     private String DELETE = "DELETE FROM COMMENTS WHERE USER_ID = ?";
     private String FIND_BY_USER_ID = "SELECT * FROM COMMENTS WHERE USER_ID = ? ";
     private String FIND_BY_PRODUCT_ID = "SELECT * FROM COMMENTS WHERE PRODUCT_ID = ?";
-    Connection connection;
 
     @Override
     public void create(Comment comment) {

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
     <USERS ID="1" FIRST_NAME="chuck" LAST_NAME="norris" ADDRESS="USA" PHONE="1234" EMAIL="chuck@norris.us"
-               PASSWORD="ranger" ROLE="admin"/>
+           PASSWORD="ranger" ROLE="admin"/>
     <USERS ID="2" FIRST_NAME="bruce" LAST_NAME="lee" ADDRESS="China" PHONE="2345" EMAIL="bruce@lee.ch"
-               PASSWORD="kee-ya" ROLE="customer"/>
+           PASSWORD="kee-ya" ROLE="customer"/>
     <USERS ID="3" FIRST_NAME="vasily" LAST_NAME="terkin" ADDRESS="Russia" PHONE="3456" EMAIL="vasily@terkin.ru"
-               PASSWORD="bear" ROLE="seller"/>
+           PASSWORD="bear" ROLE="seller"/>
 
     <PRODUCTS id="1" TITLE="product 1" PRICE="1.00" QUANTITY="5" DESCRIPTION="description product 1"/>
     <PRODUCTS id="2" TITLE="product 2" PRICE="2.00" QUANTITY="5" DESCRIPTION="description product 2"/>

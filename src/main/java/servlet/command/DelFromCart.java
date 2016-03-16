@@ -1,8 +1,5 @@
 package servlet.command;
 
-import dao.ProductDAO;
-import dao.impl.ProductDAOImpl;
-import entity.Product;
 import servlet.Command;
 import view.ProductCart;
 

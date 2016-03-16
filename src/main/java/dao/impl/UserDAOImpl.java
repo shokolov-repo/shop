@@ -18,6 +18,7 @@ import java.util.List;
  */
 public class UserDAOImpl implements UserDAO {
     Logger logger = Logger.getLogger(UserDAOImpl.class);
+    Connection connection;
     private String CREATE = "INSERT INTO USERS ( FIRST_NAME , LAST_NAME , ADDRESS , PHONE ,  EMAIL , PASSWORD, ROLE )" +
             "VALUES ( ? , ? , ? , ? , ? , ? , ? )";
     private String UPDATE = "UPDATE USERS SET FIRST_NAME = ?, LAST_NAME = ?, ADDRESS = ?, PHONE = ?, EMAIL = ? , " +
@@ -27,7 +28,6 @@ public class UserDAOImpl implements UserDAO {
     private String FIND_BY_EMAIL = "SELECT * FROM USERS WHERE EMAIL = ?";
     private String FIND_ALL_BY_ROLE = "SELECT * FROM USERS WHERE ROLE = ?";
     private String FIND_ALL = "SELECT * FROM USERS";
-    Connection connection;
 
     @Override
     public void create(User user) {

@@ -19,10 +19,10 @@ import java.util.Map;
  * Created by dmity on 21.10.15.
  */
 public class Registration implements Command {
-    Logger logger = Logger.getLogger(Registration.class);
-    private UserDAO userDAO = new UserDAOImpl();
     private final String PHONE_REGEX = "\\d{3}-\\d{3}-\\d{2}-\\d{2}";
     private final String NAME_REGEX = "[a-zA-Z]*";
+    Logger logger = Logger.getLogger(Registration.class);
+    private UserDAO userDAO = new UserDAOImpl();
 
     @Override
 

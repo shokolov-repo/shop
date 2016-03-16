@@ -1,8 +1,6 @@
 package servlet.command;
 
-import dao.CommentDAO;
 import dao.UserDAO;
-import dao.impl.CommentDAOImpl;
 import dao.impl.UserDAOImpl;
 import entity.User;
 import servlet.Command;

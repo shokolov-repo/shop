@@ -93,7 +93,7 @@ public class UserDAOImplTest extends BeforeTestShop {
         List<User> users = userDAO.findByRole("admin");
 
 //      then
-        assertEquals(1,users.size());
+        assertEquals(1, users.size());
         assertEquals(1, users.get(0).getId());
         assertEquals("chuck", users.get(0).getFirstName());
     }

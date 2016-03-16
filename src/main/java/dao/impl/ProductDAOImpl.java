@@ -17,6 +17,7 @@ import java.util.List;
  */
 public class ProductDAOImpl implements ProductDAO {
     Logger logger = Logger.getLogger(UserDAOImpl.class);
+    Connection connection;
     private String CREATE = "INSERT INTO PRODUCTS (TITLE , PRICE , QUANTITY , DESCRIPTION )" +
             " VALUES ( ? , ? , ? , ? )";
     private String UPDATE = "UPDATE PRODUCTS SET TITLE = ? , PRICE = ? , QUANTITY = ? , DESCRIPTION = ? WHERE ID = ?";
@@ -25,8 +26,6 @@ public class ProductDAOImpl implements ProductDAO {
     private String FIND_BY_TITLE = "SELECT * FROM PRODUCTS WHERE TITLE = ?";
     private String FIND_BY_PRICE = "SELECT * FROM PRODUCTS WHERE PRICE = ?";
     private String FIND_ALL = "SELECT * FROM PRODUCTS";
-    Connection connection;
-
 
     @Override
     public void create(Product product) {
@@ -167,7 +166,7 @@ public class ProductDAOImpl implements ProductDAO {
             PreparedStatement statement = connection.prepareStatement(FIND_ALL);
             resultSet = statement.executeQuery();
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 products.add(getProduct(resultSet));
             }
         } catch (SQLException e) {
@@ -177,7 +176,7 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     private Product getProduct(ResultSet resultSet) {
-        Product product= new Product();
+        Product product = new Product();
         try {
             product.setId(resultSet.getLong("ID"));
             product.setTitle(resultSet.getString("TITLE"));

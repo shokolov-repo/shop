@@ -18,9 +18,9 @@ import java.util.Map;
  * Created by dmity on 29.10.15.
  */
 public class CreateUser implements Command {
-    UserDAO userDAO = new UserDAOImpl();
     private final String PHONE_REGEX = "\\d{3}-\\d{3}-\\d{2}-\\d{2}";
     private final String NAME_REGEX = "[a-zA-Z]*";
+    UserDAO userDAO = new UserDAOImpl();
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
