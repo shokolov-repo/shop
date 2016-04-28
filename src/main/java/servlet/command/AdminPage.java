@@ -1,7 +1,8 @@
 package servlet.command;
 
-import dao.UserDAO;
-import dao.impl.UserDAOImpl;
+
+import dao.UserDao;
+import dao.impl.jdbc.UserDaoImpl;
 import entity.User;
 import servlet.Command;
 
@@ -15,7 +16,7 @@ import java.util.List;
  * Created by dmity on 25.10.15.
  */
 public class AdminPage implements Command {
-    private UserDAO userDAO = new UserDAOImpl();
+    UserDao userDAO = new UserDaoImpl();
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

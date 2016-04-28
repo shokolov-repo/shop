@@ -5,9 +5,9 @@ import entity.User;
 import java.util.List;
 
 /**
- * Created by dmity on 13.10.15.
+ * @author Shokolov Dmitry
  */
-public interface UserDAO {
+public interface UserDao {
     void create(User user);
 
     void update(User user);

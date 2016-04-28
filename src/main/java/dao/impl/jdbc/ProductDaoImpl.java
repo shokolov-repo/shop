@@ -1,11 +1,9 @@
-package dao.impl;
+package dao.impl.jdbc;
 
-import dao.ConnectionDB;
-import dao.ProductDAO;
+import dao.ProductDao;
 import entity.Product;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,11 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by dmity on 16.10.15.
+ * @author Shokolov Dmitry
  */
-public class ProductDAOImpl implements ProductDAO {
-    Logger logger = Logger.getLogger(UserDAOImpl.class);
-    Connection connection;
+public class ProductDaoImpl implements ProductDao {
+    Logger logger = Logger.getLogger(ProductDaoImpl.class);
+    java.sql.Connection connection;
     private String CREATE = "INSERT INTO PRODUCTS (TITLE , PRICE , QUANTITY , DESCRIPTION )" +
             " VALUES ( ? , ? , ? , ? )";
     private String UPDATE = "UPDATE PRODUCTS SET TITLE = ? , PRICE = ? , QUANTITY = ? , DESCRIPTION = ? WHERE ID = ?";
@@ -33,7 +31,7 @@ public class ProductDAOImpl implements ProductDAO {
             logger.error("product == null");
             throw new NullPointerException();
         }
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(CREATE);
 
@@ -50,13 +48,13 @@ public class ProductDAOImpl implements ProductDAO {
         } catch (SQLException e) {
             logger.error(e.getMessage());
         } finally {
-            ConnectionDB.closeConnection(connection);
+            ConnectionJdbc.closeConnection(connection);
         }
     }
 
     @Override
     public void update(Product product) {
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(UPDATE);
 
@@ -73,13 +71,13 @@ public class ProductDAOImpl implements ProductDAO {
         } catch (SQLException e) {
             logger.error(e.getMessage());
         } finally {
-            ConnectionDB.closeConnection(connection);
+            ConnectionJdbc.closeConnection(connection);
         }
     }
 
     @Override
     public void delete(long id) {
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(DELETE);
             statement.setLong(1, id);
@@ -97,7 +95,7 @@ public class ProductDAOImpl implements ProductDAO {
     public Product findById(long id) {
         Product product = null;
         ResultSet resultSet;
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
 
         try {
             PreparedStatement statement = connection.prepareStatement(FIND_BY_ID);
@@ -118,7 +116,7 @@ public class ProductDAOImpl implements ProductDAO {
     public Product findByTitle(String title) {
         Product product = null;
         ResultSet resultSet;
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
 
         try {
             PreparedStatement statement = connection.prepareStatement(FIND_BY_TITLE);
@@ -139,7 +137,7 @@ public class ProductDAOImpl implements ProductDAO {
     public Product findByPrice(double price) {
         Product product = null;
         ResultSet resultSet;
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
 
 
         try {
@@ -161,7 +159,7 @@ public class ProductDAOImpl implements ProductDAO {
     public List<Product> findAll() {
         List<Product> products = new ArrayList<>();
         ResultSet resultSet;
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(FIND_ALL);
             resultSet = statement.executeQuery();

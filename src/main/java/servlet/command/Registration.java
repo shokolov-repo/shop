@@ -1,7 +1,7 @@
 package servlet.command;
 
-import dao.UserDAO;
-import dao.impl.UserDAOImpl;
+import dao.UserDao;
+import dao.impl.jdbc.UserDaoImpl;
 import entity.User;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.validator.routines.EmailValidator;
@@ -22,7 +22,7 @@ public class Registration implements Command {
     private final String PHONE_REGEX = "\\d{3}-\\d{3}-\\d{2}-\\d{2}";
     private final String NAME_REGEX = "[a-zA-Z]*";
     Logger logger = Logger.getLogger(Registration.class);
-    private UserDAO userDAO = new UserDAOImpl();
+    private UserDao userDao = new UserDaoImpl();
 
     @Override
 
@@ -42,7 +42,7 @@ public class Registration implements Command {
         } else {
             user.setPassword(req.getParameter("password1"));
             user.setRole("customer");
-            userDAO.create(user);
+            userDao.create(user);
             req.getRequestDispatcher("dispatcher?command=indexPage").forward(req, resp);
         }
     }
@@ -73,7 +73,7 @@ public class Registration implements Command {
         }
         if (StringUtils.isBlank(req.getParameter("email"))) {
             errors.put("email", "Email field is required. Please enter value.");
-        } else if (userDAO.findByEmail(req.getParameter("email")) != null) {
+        } else if (userDao.findByEmail(req.getParameter("email")) != null) {
             errors.put("email", "This email is used.");
         }
         if (StringUtils.isNotBlank(req.getParameter("phone")) && !req.getParameter("phone").matches(PHONE_REGEX)) {

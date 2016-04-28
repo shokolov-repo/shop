@@ -1,7 +1,7 @@
 package servlet.command;
 
-import dao.OrderDAO;
-import dao.impl.OrderDAOImpl;
+import dao.OrderDao;
+import dao.impl.jdbc.OrderDaoImpl;
 import entity.Order;
 import entity.User;
 import servlet.Command;
@@ -16,12 +16,12 @@ import java.util.List;
  * Created by dmity on 25.10.15.
  */
 public class CustomerPage implements Command {
-    private OrderDAO orderDAO = new OrderDAOImpl();
+    private OrderDao orderDao = new OrderDaoImpl();
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = (User) req.getSession().getAttribute("principal");
-        List<Order> orders = orderDAO.findAllByUserId(user.getId());
+        List<Order> orders = (List<Order>) orderDao.findAllByUserId(user.getId());
         req.setAttribute("orders", orders);
         req.getRequestDispatcher("/customerPage.jsp").forward(req, resp);
 

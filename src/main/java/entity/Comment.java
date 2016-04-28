@@ -1,13 +1,24 @@
 package entity;
 
+import javax.persistence.*;
+
 /**
- * Created by dmity on 13.10.15.
+ * @author Shokolov Dmitry
  */
+@Entity
+@Table(name = "COMMENTS",schema = "shop")
 public class Comment {
+    @Id
+    @GeneratedValue
+    @Column(name = "ID")
     private long id;
+    @Column(name = "PRODUCT_ID", nullable = false)
     private long productId;
+    @Column(name = "USER_ID", nullable = false)
     private long userId;
+    @Column(name = "USER_NAME", length = 20, nullable = false)
     private String userName;
+    @Column(name = "CONTENT", length = 250, nullable = false)
     private String content;
 
     public long getId() {

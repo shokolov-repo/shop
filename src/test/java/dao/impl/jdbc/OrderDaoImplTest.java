@@ -1,6 +1,6 @@
-package dao.impl;
+package dao.impl.jdbc;
 
-import dao.OrderDAO;
+import dao.OrderDao;
 import entity.Order;
 import org.junit.Test;
 
@@ -10,8 +10,8 @@ import java.util.List;
 /**
  * Created by dmity on 16.10.15.
  */
-public class OrderDAOImplTest extends BeforeTestShop {
-    OrderDAO orderDAO = new OrderDAOImpl();
+public class OrderDaoImplTest extends BeforeTestShop {
+    OrderDao orderDao = new OrderDaoImpl();
 
     @Test
     public void testCreate() throws Exception {
@@ -23,8 +23,8 @@ public class OrderDAOImplTest extends BeforeTestShop {
         testOrder.setStatus("check");
 
 //        when
-        orderDAO.create(testOrder);
-        Order order = orderDAO.findById(4);
+        orderDao.create(testOrder);
+        Order order = orderDao.findById(4);
 
 //        then
         assertEquals(1, order.getUserId());
@@ -35,12 +35,12 @@ public class OrderDAOImplTest extends BeforeTestShop {
     @Test
     public void testUpdate() throws Exception {
 //        given
-        Order testOrder = orderDAO.findById(1);
+        Order testOrder = orderDao.findById(1);
         testOrder.setStatus("update");
 
 //        when
-        orderDAO.update(testOrder);
-        Order order = orderDAO.findById(1);
+        orderDao.update(testOrder);
+        Order order = orderDao.findById(1);
 
 //        then
         assertEquals("update", order.getStatus());
@@ -49,8 +49,8 @@ public class OrderDAOImplTest extends BeforeTestShop {
     @Test
     public void testDelete() throws Exception {
 //        when
-        orderDAO.delete(3);
-        Order order = orderDAO.findById(3);
+        orderDao.delete(3);
+        Order order = orderDao.findById(3);
 
 //        then
         assertNull(order);
@@ -59,7 +59,7 @@ public class OrderDAOImplTest extends BeforeTestShop {
     @Test
     public void testFindById() throws Exception {
 //        when
-        Order order = orderDAO.findById(1);
+        Order order = orderDao.findById(1);
 
 //        then
         assertEquals("sold", order.getStatus(), "sold");
@@ -70,7 +70,7 @@ public class OrderDAOImplTest extends BeforeTestShop {
     @Test
     public void testFindByDate() throws Exception {
 //        when
-        Order order = orderDAO.findByDate(Date.valueOf("2015-02-12"));
+        Order order = orderDao.findByDate(Date.valueOf("2015-02-12"));
 
 //        then
         assertEquals("sold", order.getStatus());
@@ -81,7 +81,7 @@ public class OrderDAOImplTest extends BeforeTestShop {
     @Test
     public void testFindByStatus() throws Exception {
 //        when
-        List<Order> orders = orderDAO.findAllByStatus("sold");
+        List<Order> orders = (List<Order>) orderDao.findAllByStatus("sold");
 
 //        then
         assertEquals(1, orders.get(0).getId());
@@ -91,7 +91,7 @@ public class OrderDAOImplTest extends BeforeTestShop {
     @Test
     public void testFindAll() throws Exception {
 //        when
-        List<Order> orders = orderDAO.findAll();
+        List<Order> orders = (List<Order>) orderDao.findAll();
 
 //        then
         assertEquals(1, orders.get(0).getId());

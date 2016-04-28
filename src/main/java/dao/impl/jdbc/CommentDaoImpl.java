@@ -1,7 +1,6 @@
-package dao.impl;
+package dao.impl.jdbc;
 
-import dao.CommentDAO;
-import dao.ConnectionDB;
+import dao.CommentDao;
 import entity.Comment;
 import org.apache.log4j.Logger;
 
@@ -13,10 +12,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by dmity on 16.10.15.
+ * @author Shokolov Dmitry
  */
-public class CommentDAOImpl implements CommentDAO {
-    Logger logger = Logger.getLogger(UserDAOImpl.class);
+public class CommentDaoImpl implements CommentDao {
+    Logger logger = Logger.getLogger(CommentDaoImpl.class);
     Connection connection;
     private String CREATE = "INSERT INTO COMMENTS (PRODUCT_ID , USER_ID , USER_NAME , CONTENT )" +
             "VALUES ( ? , ? , ? , ? )";
@@ -31,7 +30,7 @@ public class CommentDAOImpl implements CommentDAO {
             logger.error("Comment == null");
             throw new NullPointerException();
         }
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(CREATE);
 
@@ -48,13 +47,13 @@ public class CommentDAOImpl implements CommentDAO {
         } catch (SQLException e) {
             logger.error(e.getMessage());
         } finally {
-            ConnectionDB.closeConnection(connection);
+            ConnectionJdbc.closeConnection(connection);
         }
     }
 
     @Override
     public void update(Comment comment) {
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(UPDATE);
 
@@ -68,13 +67,13 @@ public class CommentDAOImpl implements CommentDAO {
         } catch (SQLException e) {
             logger.error(e.getMessage());
         } finally {
-            ConnectionDB.closeConnection(connection);
+            ConnectionJdbc.closeConnection(connection);
         }
     }
 
     @Override
     public void delete(long userId) {
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(DELETE);
             statement.setLong(1, userId);
@@ -93,7 +92,7 @@ public class CommentDAOImpl implements CommentDAO {
     public List<Comment> findByUserId(long userId) {
         List<Comment> comments = new LinkedList<>();
         ResultSet resultSet;
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
 
         try {
             PreparedStatement statement = connection.prepareStatement(FIND_BY_USER_ID);
@@ -114,7 +113,7 @@ public class CommentDAOImpl implements CommentDAO {
     public List<Comment> findByProductId(long productId) {
         List<Comment> comments = new LinkedList<>();
         ResultSet resultSet;
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(FIND_BY_PRODUCT_ID);
             statement.setLong(1, productId);

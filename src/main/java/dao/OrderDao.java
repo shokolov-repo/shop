@@ -3,13 +3,14 @@ package dao;
 import entity.Order;
 
 import java.sql.Date;
+import java.util.Collection;
 import java.util.List;
 
 
 /**
- * Created by dmity on 13.10.15.
+ * @author Shokolov Dmitry
  */
-public interface OrderDAO {
+public interface OrderDao {
     void create(Order order);
 
     void update(Order order);
@@ -20,9 +21,9 @@ public interface OrderDAO {
 
     Order findByDate(Date date);
 
-    List<Order> findAllByUserId(long userId);
+    Collection<Order> findAllByUserId(long userId);
 
-    List<Order> findAllByStatus(String status);
+    Collection<Order> findAllByStatus(String status);
 
-    List<Order> findAll();
+    Collection<Order> findAll();
 }

@@ -1,6 +1,6 @@
-package dao.impl;
+package dao.impl.jdbc;
 
-import dao.ProductDAO;
+import dao.ProductDao;
 import entity.Product;
 import org.junit.Test;
 
@@ -9,8 +9,8 @@ import java.util.List;
 /**
  * Created by dmity on 16.10.15.
  */
-public class ProductDAOImplTest extends BeforeTestShop {
-    ProductDAO productDAO = new ProductDAOImpl();
+public class ProductDaoImplTest extends BeforeTestShop {
+    ProductDao productDao = new ProductDaoImpl();
 
     @Test
     public void testCreate() throws Exception {
@@ -23,8 +23,8 @@ public class ProductDAOImplTest extends BeforeTestShop {
         testProduct.setDescription("description product 1");
 
 //        when
-        productDAO.create(testProduct);
-        Product product = productDAO.findById(4);
+        productDao.create(testProduct);
+        Product product = productDao.findById(4);
 
 //        then
         assertEquals("product 4", product.getTitle());
@@ -36,12 +36,12 @@ public class ProductDAOImplTest extends BeforeTestShop {
     @Test
     public void testUpdate() throws Exception {
 //        given
-        Product testProduct = productDAO.findById(1);
+        Product testProduct = productDao.findById(1);
         testProduct.setDescription("update description");
 
 //        when
-        productDAO.update(testProduct);
-        Product product = productDAO.findById(1);
+        productDao.update(testProduct);
+        Product product = productDao.findById(1);
 
 //        then
         assertEquals("product 1", product.getTitle());
@@ -53,8 +53,8 @@ public class ProductDAOImplTest extends BeforeTestShop {
     @Test
     public void testDelete() throws Exception {
 //      when
-        productDAO.delete(1);
-        Product product = productDAO.findById(1);
+        productDao.delete(1);
+        Product product = productDao.findById(1);
 
 //      then
         assertNull(product);
@@ -63,7 +63,7 @@ public class ProductDAOImplTest extends BeforeTestShop {
     @Test
     public void testFindById() throws Exception {
 //        when
-        Product product = productDAO.findById(3);
+        Product product = productDao.findById(3);
 //        then
 
         assertEquals("product 3", product.getTitle());
@@ -75,7 +75,7 @@ public class ProductDAOImplTest extends BeforeTestShop {
     @Test
     public void testFindByTitle() throws Exception {
 //        when
-        Product product = productDAO.findByTitle("product 3");
+        Product product = productDao.findByTitle("product 3");
 //        then
 
         assertEquals(3, product.getId());
@@ -87,7 +87,7 @@ public class ProductDAOImplTest extends BeforeTestShop {
     @Test
     public void testFindByPrice() throws Exception {
 //        when
-        Product product = productDAO.findByPrice(3.00);
+        Product product = productDao.findByPrice(3.00);
 
 //        then
         assertEquals(3, product.getId());
@@ -99,7 +99,7 @@ public class ProductDAOImplTest extends BeforeTestShop {
     @Test
     public void testFindByAll() throws Exception {
 //        when
-        List<Product> products = productDAO.findAll();
+        List<Product> products = productDao.findAll();
 
 //        then
         assertEquals(1, products.get(0).getId());

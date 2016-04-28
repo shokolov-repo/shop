@@ -1,7 +1,7 @@
-package dao.impl;
+package dao.impl.jdbc;
 
 import com.ibatis.common.jdbc.ScriptRunner;
-import dao.ConnectionDB;
+import dao.impl.jdbc.ConnectionJdbc;
 import org.dbunit.*;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
@@ -22,8 +22,8 @@ import java.sql.SQLException;
 public abstract class BeforeTestShop extends DatabaseTestCase {
 
     public void createTestDB() throws Exception {
-        System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_DRIVER_CLASS, ConnectionDB.getDriver());
-        Connection connection = ConnectionDB.createConnection();
+        System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_DRIVER_CLASS, ConnectionJdbc.getDriver());
+        Connection connection = ConnectionJdbc.createConnection();
         ScriptRunner runner = new ScriptRunner(connection, false, false);
         runner.runScript(new BufferedReader(new FileReader("src/test/resources/createdatabase.sql")));
     }
@@ -35,8 +35,8 @@ public abstract class BeforeTestShop extends DatabaseTestCase {
 
     @Override
     protected IDatabaseTester newDatabaseTester() throws Exception {
-        JdbcDatabaseTester databaseTester = new JdbcDatabaseTester(ConnectionDB.getDriver(),
-                ConnectionDB.getUrl(), ConnectionDB.getUser(), ConnectionDB.getPassWord());
+        JdbcDatabaseTester databaseTester = new JdbcDatabaseTester(ConnectionJdbc.getDriver(),
+                ConnectionJdbc.getUrl(), ConnectionJdbc.getUser(), ConnectionJdbc.getPassWord());
 
         databaseTester.setSetUpOperation(new CompositeOperation(DatabaseOperation.REFRESH,
                 DatabaseOperation.DELETE_ALL));
@@ -46,7 +46,7 @@ public abstract class BeforeTestShop extends DatabaseTestCase {
 
     @Override
     protected DatabaseConnection getConnection() throws SQLException, DatabaseUnitException {
-        Connection connection = ConnectionDB.createConnection();
+        Connection connection = ConnectionJdbc.createConnection();
         String databaseProductName = connection.getMetaData().getDatabaseProductName();
         DatabaseConnection databaseConnection = new DatabaseConnection(connection);
         DatabaseConfig dbConfig = databaseConnection.getConfig();

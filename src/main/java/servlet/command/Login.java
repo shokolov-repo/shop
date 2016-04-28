@@ -1,7 +1,7 @@
 package servlet.command;
 
-import dao.UserDAO;
-import dao.impl.UserDAOImpl;
+import dao.UserDao;
+import dao.impl.jdbc.UserDaoImpl;
 import entity.Product;
 import entity.User;
 import org.apache.log4j.Logger;
@@ -19,8 +19,9 @@ import java.util.List;
  * Created by dmity on 21.10.15.
  */
 public class Login implements Command {
-    Logger logger = Logger.getLogger(Login.class);
-    UserDAO userDAO = new UserDAOImpl();
+    private Logger logger = Logger.getLogger(Login.class);
+    private UserDao userDAO = new UserDaoImpl();
+
 
     @Override
 

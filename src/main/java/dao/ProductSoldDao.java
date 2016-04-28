@@ -5,9 +5,9 @@ import entity.ProductSold;
 import java.util.List;
 
 /**
- * Created by dmity on 13.10.15.
+ * @author Shokolov Dmitry
  */
-public interface ProductSoldDAO {
+public interface ProductSoldDao {
     void create(ProductSold productSold);
 
     void update(ProductSold productSold);

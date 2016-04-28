@@ -1,7 +1,6 @@
-package dao.impl;
+package dao.impl.jdbc;
 
-import dao.ConnectionDB;
-import dao.OrderDAO;
+import dao.OrderDao;
 import entity.Order;
 import org.apache.log4j.Logger;
 
@@ -11,11 +10,11 @@ import java.util.List;
 
 
 /**
- * Created by dmity on 16.10.15.
+ * @author Shokolov Dmitry
  */
-public class OrderDAOImpl implements OrderDAO {
-    Logger logger = Logger.getLogger(UserDAOImpl.class);
-    Connection connection;
+public class OrderDaoImpl implements OrderDao {
+    Logger logger = Logger.getLogger(OrderDaoImpl.class);
+    java.sql.Connection connection;
     private String CREATE = "INSERT INTO ORDERS (USER_ID , DATE_ORDER , STATUS )" +
             "VALUES ( ? , ? , ? )";
     private String UPDATE = "UPDATE ORDERS SET STATUS = ? WHERE ID = ?";
@@ -32,7 +31,7 @@ public class OrderDAOImpl implements OrderDAO {
             logger.error("Order == null");
             throw new NullPointerException();
         }
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(CREATE);
 
@@ -48,13 +47,13 @@ public class OrderDAOImpl implements OrderDAO {
         } catch (SQLException e) {
             logger.error(e.getMessage());
         } finally {
-            ConnectionDB.closeConnection(connection);
+            ConnectionJdbc.closeConnection(connection);
         }
     }
 
     @Override
     public void update(Order order) {
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(UPDATE);
 
@@ -68,13 +67,13 @@ public class OrderDAOImpl implements OrderDAO {
         } catch (SQLException e) {
             logger.error(e.getMessage());
         } finally {
-            ConnectionDB.closeConnection(connection);
+            ConnectionJdbc.closeConnection(connection);
         }
     }
 
     @Override
     public void delete(long id) {
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(DELETE);
 
@@ -93,7 +92,7 @@ public class OrderDAOImpl implements OrderDAO {
     public Order findById(long id) {
         Order order = null;
         ResultSet resultSet;
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
 
         try {
             PreparedStatement statement = connection.prepareStatement(FIND_BY_ID);
@@ -115,7 +114,7 @@ public class OrderDAOImpl implements OrderDAO {
     public Order findByDate(Date date) {
         Order order = null;
         ResultSet resultSet;
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
 
         try {
             PreparedStatement statement = connection.prepareStatement(FIND_BY_DATE);
@@ -137,7 +136,7 @@ public class OrderDAOImpl implements OrderDAO {
     public List<Order> findAllByUserId(long userId) {
         List<Order> orders = new LinkedList<>();
         ResultSet resultSet;
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
 
         try {
             PreparedStatement statement = connection.prepareStatement(FIND_ALL_BY_USER_ID);
@@ -159,7 +158,7 @@ public class OrderDAOImpl implements OrderDAO {
     public List<Order> findAllByStatus(String status) {
         List<Order> orders = new LinkedList<>();
         ResultSet resultSet;
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
 
         try {
             PreparedStatement statement = connection.prepareStatement(FIND_ALL_BY_STATUS);
@@ -181,7 +180,7 @@ public class OrderDAOImpl implements OrderDAO {
     public List<Order> findAll() {
         List<Order> orders = new LinkedList<>();
         ResultSet resultSet;
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
 
         try {
             PreparedStatement statement = connection.prepareStatement(FIND_ALL);

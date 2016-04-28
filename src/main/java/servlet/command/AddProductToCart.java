@@ -1,7 +1,7 @@
 package servlet.command;
 
-import dao.ProductDAO;
-import dao.impl.ProductDAOImpl;
+import dao.ProductDao;
+import dao.impl.jdbc.ProductDaoImpl;
 import entity.Product;
 import servlet.Command;
 import view.ProductCart;
@@ -16,14 +16,14 @@ import java.util.List;
  * Created by dmity on 26.10.15.
  */
 public class AddProductToCart implements Command {
-    ProductDAO productDAO = new ProductDAOImpl();
+    ProductDao productDao = new ProductDaoImpl();
 
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<ProductCart> cart = (List<ProductCart>) req.getSession().getAttribute("cart");
         String id = req.getParameter("id");
-        Product product = productDAO.findById(Long.valueOf(id));
+        Product product = productDao.findById(Long.valueOf(id));
 
         ProductCart productCart = getProductCartById(cart, product.getId());
         if (productCart == null) {

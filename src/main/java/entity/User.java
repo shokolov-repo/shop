@@ -1,16 +1,30 @@
 package entity;
 
+import javax.persistence.*;
+
 /**
- * Created by dmity on 13.10.15.
+ * @author Shokolov Dmitry
  */
+@Entity
+@Table(name = "USERS",schema = "shop")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private long id;
+    @Column(name = "FIRST_NAME", nullable = false, length = 20)
     private String firstName;
+    @Column(name = "LAST_NAME", length = 20)
     private String lastName;
+    @Column(name = "ADDRESS", length = 100)
     private String address;
+    @Column(name = "PHONE", length = 13)
     private String phone;
+    @Column(name = "EMAIL", length = 30, unique = true, nullable = false)
     private String email;
+    @Column(name = "PASSWORD", length = 10, nullable = false)
     private String password;
+    @Column(name = "ROLE", length = 10, nullable = false)
     private String role;
 
     public long getId() {

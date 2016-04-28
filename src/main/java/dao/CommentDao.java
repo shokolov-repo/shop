@@ -5,9 +5,9 @@ import entity.Comment;
 import java.util.List;
 
 /**
- * Created by dmity on 13.10.15.
+ * @author Shokolov Dmitry
  */
-public interface CommentDAO {
+public interface CommentDao {
     void create(Comment comment);
 
     void update(Comment comment);

@@ -1,7 +1,7 @@
 package servlet.command;
 
-import dao.UserDAO;
-import dao.impl.UserDAOImpl;
+import dao.impl.jdbc.UserDaoImpl;
+import dao.UserDao;
 import entity.User;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.validator.routines.EmailValidator;
@@ -20,7 +20,7 @@ import java.util.Map;
 public class CreateUser implements Command {
     private final String PHONE_REGEX = "\\d{3}-\\d{3}-\\d{2}-\\d{2}";
     private final String NAME_REGEX = "[a-zA-Z]*";
-    UserDAO userDAO = new UserDAOImpl();
+    UserDao userDAO = new UserDaoImpl();
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

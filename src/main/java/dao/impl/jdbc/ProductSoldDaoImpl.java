@@ -1,11 +1,9 @@
-package dao.impl;
+package dao.impl.jdbc;
 
-import dao.ConnectionDB;
-import dao.ProductSoldDAO;
+import dao.ProductSoldDao;
 import entity.ProductSold;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,11 +12,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by dmity on 16.10.15.
+ * @author Shokolov Dmitry
  */
-public class ProductSoldDAOImpl implements ProductSoldDAO {
-    Logger logger = Logger.getLogger(UserDAOImpl.class);
-    Connection connection;
+public class ProductSoldDaoImpl implements ProductSoldDao {
+    Logger logger = Logger.getLogger(ProductSoldDaoImpl.class);
+    java.sql.Connection connection;
     private String CREATE = "INSERT INTO PRODUCTS_SOLD (ORDER_ID , TITLE , QUANTITY , PRICE )" +
             "VALUES ( ? , ? , ? , ? )";
     private String UPDATE = "UPDATE PRODUCTS_SOLD SET TITLE = ? , QUANTITY = ? , PRICE = ? WHERE ORDER_ID = ?";
@@ -32,11 +30,11 @@ public class ProductSoldDAOImpl implements ProductSoldDAO {
             logger.error("ProductSold == null");
             throw new NullPointerException();
         }
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(CREATE);
 
-            statement.setLong(1, productSold.getOrderId());
+            statement.setLong(1, productSold.getId());
             statement.setString(2, productSold.getTitle());
             statement.setInt(3, productSold.getQuantity());
             statement.setDouble(4, productSold.getPrice());
@@ -49,20 +47,20 @@ public class ProductSoldDAOImpl implements ProductSoldDAO {
         } catch (SQLException e) {
             logger.error(e.getMessage());
         } finally {
-            ConnectionDB.closeConnection(connection);
+            ConnectionJdbc.closeConnection(connection);
         }
     }
 
     @Override
     public void update(ProductSold productSold) {
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(UPDATE);
 
             statement.setString(1, productSold.getTitle());
             statement.setInt(2, productSold.getQuantity());
             statement.setDouble(3, productSold.getPrice());
-            statement.setLong(4, productSold.getOrderId());
+            statement.setLong(4, productSold.getId());
             int i = statement.executeUpdate();
 
             if (i == 0) {
@@ -71,13 +69,13 @@ public class ProductSoldDAOImpl implements ProductSoldDAO {
         } catch (SQLException e) {
             logger.error(e.getMessage());
         } finally {
-            ConnectionDB.closeConnection(connection);
+            ConnectionJdbc.closeConnection(connection);
         }
     }
 
     @Override
     public void deleteAll(long orderId) {
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(DELETE_ALL_BY_ORDER_ID);
 
@@ -96,7 +94,7 @@ public class ProductSoldDAOImpl implements ProductSoldDAO {
     public List<ProductSold> findAll(long orderId) {
         List<ProductSold> productsSold = new LinkedList<>();
         ResultSet resultSet;
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
 
         try {
             PreparedStatement statement = connection.prepareStatement(FIND_ALL_BY_ORDER_ID);
@@ -118,7 +116,7 @@ public class ProductSoldDAOImpl implements ProductSoldDAO {
     public List<ProductSold> findAll() {
         List<ProductSold> productsSold = new ArrayList<>();
         ResultSet resultSet;
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(FIND_ALL);
             resultSet = statement.executeQuery();
@@ -135,7 +133,7 @@ public class ProductSoldDAOImpl implements ProductSoldDAO {
     private ProductSold getProductSold(ResultSet resultSet) {
         ProductSold productSold = new ProductSold();
         try {
-            productSold.setOrderId(resultSet.getLong("ORDER_ID"));
+            productSold.setId(resultSet.getLong("ORDER_ID"));
             productSold.setTitle(resultSet.getString("TITLE"));
             productSold.setQuantity(resultSet.getInt("QUANTITY"));
             productSold.setPrice(resultSet.getDouble("PRICE"));

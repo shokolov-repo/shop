@@ -1,6 +1,6 @@
-package dao.impl;
+package dao.impl.jdbc;
 
-import dao.CommentDAO;
+import dao.CommentDao;
 import entity.Comment;
 import org.junit.Test;
 
@@ -9,8 +9,8 @@ import java.util.List;
 /**
  * Created by dmity on 16.10.15.
  */
-public class CommentDAOImplTest extends BeforeTestShop {
-    CommentDAO commentDAO = new CommentDAOImpl();
+public class CommentDaoImplTest extends BeforeTestShop {
+    CommentDao commentDao = new CommentDaoImpl();
 
     @Test
     public void testCreate() throws Exception {
@@ -22,8 +22,8 @@ public class CommentDAOImplTest extends BeforeTestShop {
         testComment.setContent("Some content test");
 
 //      when
-        commentDAO.create(testComment);
-        List<Comment> comments = commentDAO.findByProductId(3);
+        commentDao.create(testComment);
+        List<Comment> comments = commentDao.findByProductId(3);
 
 //      then
         assertEquals(1, comments.size());
@@ -36,12 +36,12 @@ public class CommentDAOImplTest extends BeforeTestShop {
     @Test
     public void testUpdate() throws Exception {
 //      given
-        Comment testComment = commentDAO.findByProductId(2).get(0);
+        Comment testComment = commentDao.findByProductId(2).get(0);
         testComment.setContent("update content");
 
 //      when
-        commentDAO.update(testComment);
-        List<Comment> comments = commentDAO.findByProductId(2);
+        commentDao.update(testComment);
+        List<Comment> comments = commentDao.findByProductId(2);
 
 //      then
         assertEquals(1, comments.size());
@@ -51,8 +51,8 @@ public class CommentDAOImplTest extends BeforeTestShop {
     @Test
     public void testDelete() throws Exception {
 //      when
-        commentDAO.delete(2);
-        List<Comment> comments = commentDAO.findByUserId(2);
+        commentDao.delete(2);
+        List<Comment> comments = commentDao.findByUserId(2);
 
 //      then
         assertEquals(0, comments.size());
@@ -61,7 +61,7 @@ public class CommentDAOImplTest extends BeforeTestShop {
     @Test
     public void testFindByCustomerId() throws Exception {
 //        when
-        List<Comment> comments = commentDAO.findByUserId(2);
+        List<Comment> comments = commentDao.findByUserId(2);
 
 //        then
         assertEquals(1, comments.size());
@@ -73,7 +73,7 @@ public class CommentDAOImplTest extends BeforeTestShop {
     @Test
     public void testFindByProductId() throws Exception {
 //        when
-        List<Comment> comments = commentDAO.findByProductId(1);
+        List<Comment> comments = commentDao.findByProductId(1);
 
 //        then
         assertEquals(2, comments.size());

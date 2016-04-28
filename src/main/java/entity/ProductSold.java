@@ -1,20 +1,41 @@
 package entity;
 
+import javax.persistence.*;
+
 /**
- * Created by dmity on 13.10.15.
+ * @author Shokolv Dmitry
  */
+@Entity
+@Table(name = "PRODUCTS_SOLD",schema = "shop")
 public class ProductSold {
-    private long orderId;
+    @Id
+    @GeneratedValue
+    @Column(name = "ID")
+    private long id;
+    @Column(name = "TITLE", length = 250, nullable = false)
     private String title;
+    @ManyToOne
+    @JoinColumn(name = "ORDER_ID", nullable=false)
+    private Order order;
+    @Column(name = "QUANTITY", length = 10, nullable = false)
     private int quantity;
+    @Column(name = "PRICE", length = 10, nullable = false)
     private double price;
 
-    public long getOrderId() {
-        return orderId;
+    public long getId() {
+        return id;
     }
 
-    public void setOrderId(long orderId) {
-        this.orderId = orderId;
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public String getTitle() {
@@ -44,10 +65,38 @@ public class ProductSold {
     @Override
     public String toString() {
         return "ProductSold{" +
-                "orderId=" + orderId +
+                "id=" + id +
                 ", title='" + title + '\'' +
+                ", order=" + order +
                 ", quantity=" + quantity +
                 ", price=" + price +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ProductSold)) return false;
+
+        ProductSold sold = (ProductSold) o;
+
+        if (id != sold.id) return false;
+        if (Double.compare(sold.price, price) != 0) return false;
+        if (quantity != sold.quantity) return false;
+        if (title != null ? !title.equals(sold.title) : sold.title != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + quantity;
+        temp = Double.doubleToLongBits(price);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
     }
 }

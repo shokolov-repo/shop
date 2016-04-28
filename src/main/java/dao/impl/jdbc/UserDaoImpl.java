@@ -1,11 +1,9 @@
-package dao.impl;
+package dao.impl.jdbc;
 
-import dao.ConnectionDB;
-import dao.UserDAO;
+import dao.UserDao;
 import entity.User;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,11 +12,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by dmity on 13.10.15.
+ * @author Shokolov Dmitry
  */
-public class UserDAOImpl implements UserDAO {
-    Logger logger = Logger.getLogger(UserDAOImpl.class);
-    Connection connection;
+public class UserDaoImpl implements UserDao {
+    Logger logger = Logger.getLogger(UserDaoImpl.class);
+    java.sql.Connection connection;
     private String CREATE = "INSERT INTO USERS ( FIRST_NAME , LAST_NAME , ADDRESS , PHONE ,  EMAIL , PASSWORD, ROLE )" +
             "VALUES ( ? , ? , ? , ? , ? , ? , ? )";
     private String UPDATE = "UPDATE USERS SET FIRST_NAME = ?, LAST_NAME = ?, ADDRESS = ?, PHONE = ?, EMAIL = ? , " +
@@ -31,7 +29,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void create(User user) {
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(CREATE);
 
@@ -51,13 +49,13 @@ public class UserDAOImpl implements UserDAO {
         } catch (SQLException e) {
             logger.error(e.getMessage());
         } finally {
-            ConnectionDB.closeConnection(connection);
+            ConnectionJdbc.closeConnection(connection);
         }
     }
 
     @Override
     public void update(User user) {
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(UPDATE);
 
@@ -77,13 +75,13 @@ public class UserDAOImpl implements UserDAO {
         } catch (SQLException e) {
             logger.error(e.getMessage());
         } finally {
-            ConnectionDB.closeConnection(connection);
+            ConnectionJdbc.closeConnection(connection);
         }
     }
 
     @Override
     public void delete(long id) {
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(DELETE);
             statement.setLong(1, id);
@@ -101,7 +99,7 @@ public class UserDAOImpl implements UserDAO {
     public User findById(long id) {
         User user = null;
         ResultSet resultSet;
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
 
         try {
             PreparedStatement statement = connection.prepareStatement(FIND_BY_ID);
@@ -125,7 +123,7 @@ public class UserDAOImpl implements UserDAO {
             return null;
         }
         ResultSet resultSet;
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
 
         try {
             PreparedStatement statement = connection.prepareStatement(FIND_BY_EMAIL);
@@ -146,7 +144,7 @@ public class UserDAOImpl implements UserDAO {
     public List<User> findByRole(String role) {
         List<User> users = new LinkedList<>();
         ResultSet resultSet;
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(FIND_ALL_BY_ROLE);
             statement.setString(1, role);
@@ -165,7 +163,7 @@ public class UserDAOImpl implements UserDAO {
     public List<User> findAll() {
         List<User> users = new ArrayList<>();
         ResultSet resultSet;
-        connection = ConnectionDB.createConnection();
+        connection = ConnectionJdbc.createConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(FIND_ALL);
             resultSet = statement.executeQuery();

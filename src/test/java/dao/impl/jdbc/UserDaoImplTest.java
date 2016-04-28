@@ -1,4 +1,4 @@
-package dao.impl;
+package dao.impl.jdbc;
 
 import entity.User;
 import org.junit.Test;
@@ -8,8 +8,8 @@ import java.util.List;
 /**
  * Created by dmity on 14.10.15.
  */
-public class UserDAOImplTest extends BeforeTestShop {
-    UserDAOImpl userDAO = new UserDAOImpl();
+public class UserDaoImplTest extends BeforeTestShop {
+    UserDaoImpl userDAO = new UserDaoImpl();
 
     @Test
     public void testCreate() throws Exception {

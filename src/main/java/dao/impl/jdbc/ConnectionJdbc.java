@@ -1,4 +1,4 @@
-package dao;
+package dao.impl.jdbc;
 
 import org.apache.log4j.Logger;
 
@@ -10,10 +10,10 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 /**
- * Created by dmity on 13.10.15.
+ * @author Shokolov Dmitry
  */
-public abstract class ConnectionDB {
-    static Logger logger = Logger.getLogger(ConnectionDB.class);
+public abstract class ConnectionJdbc {
+    static Logger logger = Logger.getLogger(ConnectionJdbc.class);
     private static String prop = "./database.properties";
     private static String url;
     private static String user;
@@ -22,7 +22,7 @@ public abstract class ConnectionDB {
 
     static {
         Properties properties = new Properties();
-        InputStream inputStream = ConnectionDB.class.getClassLoader().getResourceAsStream(prop);
+        InputStream inputStream = ConnectionJdbc.class.getClassLoader().getResourceAsStream(prop);
 
         try {
             properties.load(inputStream);
